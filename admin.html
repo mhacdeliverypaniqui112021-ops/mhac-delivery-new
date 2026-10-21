@@ -4684,3 +4684,76 @@ body{font-size:15px!important;line-height:1.35!important}
 #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{border-bottom-color:#be123c!important}
 </style>
 
+
+
+<style id="MHAC_BLACK_LIGHTBLUE_FINAL_FIX">
+/* Final requested theme: black page, soft light-blue panels, readable black text. */
+html,body{background:#05070a!important;color:#111827!important;font-family:Arial,Helvetica,sans-serif!important}
+body{color:#111827!important}
+header, .topbar, .appHeader, #header, .siteHeader{background:#05070a!important;color:#f8fafc!important}
+#app:not(.hidden){background:#05070a!important;color:#111827!important}
+#app:not(.hidden)>.card.mhacScreenActive{
+ background:#080b10!important;color:#111827!important;border:2px solid #38bdf8!important;
+ border-radius:26px!important;box-shadow:0 0 0 1px rgba(56,189,248,.15),0 12px 28px rgba(0,0,0,.45)!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{border-bottom:3px solid #38bdf8!important}
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h3,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading b,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading small,
+#app:not(.hidden)>.card.mhacScreenActive h1,
+#app:not(.hidden)>.card.mhacScreenActive h2,
+#app:not(.hidden)>.card.mhacScreenActive h3,
+#app:not(.hidden)>.card.mhacScreenActive h4,
+#app:not(.hidden)>.card.mhacScreenActive label,
+#app:not(.hidden)>.card.mhacScreenActive p,
+#app:not(.hidden)>.card.mhacScreenActive small,
+#app:not(.hidden)>.card.mhacScreenActive span,
+#app:not(.hidden)>.card.mhacScreenActive div,
+#app:not(.hidden)>.card.mhacScreenActive strong,
+#app:not(.hidden)>.card.mhacScreenActive b{color:#111827!important}
+/* Light-blue inner panels; use black text for contrast. */
+#app:not(.hidden)>.card.mhacScreenActive .settingsCard,
+#app:not(.hidden)>.card.mhacScreenActive .adminSectionBody,
+#app:not(.hidden)>.card.mhacScreenActive .storeCard,
+#app:not(.hidden)>.card.mhacScreenActive .categoryCard,
+#app:not(.hidden)>.card.mhacScreenActive .foodCard,
+#app:not(.hidden)>.card.mhacScreenActive .orderCard,
+#app:not(.hidden)>.card.mhacScreenActive .riderCard,
+#app:not(.hidden)>.card.mhacScreenActive .chatBox,
+#app:not(.hidden)>.card.mhacScreenActive .settingsBox,
+#app:not(.hidden)>.card.mhacScreenActive .metric,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{
+ background:#c9efff!important;color:#111827!important;border-color:#7dd3fc!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive input,
+#app:not(.hidden)>.card.mhacScreenActive select,
+#app:not(.hidden)>.card.mhacScreenActive textarea{
+ background:#fff!important;color:#111827!important;border:2px solid #38bdf8!important;
+ font-size:17px!important;line-height:1.4!important;min-height:48px!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive input::placeholder,
+#app:not(.hidden)>.card.mhacScreenActive textarea::placeholder{color:#4b5563!important;opacity:1!important}
+#app:not(.hidden)>.card.mhacScreenActive button{
+ color:#111827!important;font-size:16px!important;font-weight:800!important;line-height:1.35!important;
+ background:#b9eaff!important;border:2px solid #38bdf8!important;border-radius:13px!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive .mhacBackBtn,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenBack,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop button{background:#7dd3fc!important;color:#111827!important;border:2px solid #38bdf8!important}
+/* Hide redundant section-collapse headings on every screen except Store/Menu Manager. */
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionToggle,
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .sectionToggle,
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .collapseToggle,
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .accordionToggle{display:none!important}
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionBody{display:block!important}
+/* Store/menu keeps its actual collapse/expand controls and light-blue nesting. */
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionBody,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .storeCard{background:#b9eaff!important;color:#111827!important;border-color:#38bdf8!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .categoryCard{background:#dff6ff!important;color:#111827!important;border-color:#7dd3fc!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodCard{background:#f0fbff!important;color:#111827!important;border-color:#bae6fd!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionToggle{display:flex!important}
+@media(max-width:600px){#app:not(.hidden)>.card.mhacScreenActive{padding:16px!important;min-height:calc(100dvh - 175px)!important;margin:10px auto!important}.mhacScreenHeading b{font-size:clamp(23px,6vw,30px)!important}}
+</style>
