@@ -1,30 +1,298 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MHAC Delivery — Customer</title><link rel="stylesheet" href="assets/app.css"></head>
+<html lang="fil">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#e21d2b">
+  <title>MHAC Delivery | Order Food</title>
+  <link rel="stylesheet" href="app.css">
+  <style>
+    .welcome {background:linear-gradient(135deg,#fff,#fff0f1);border:1px solid #f3d5d8;border-radius:22px;padding:25px;margin:18px 0}
+    .welcome h1{font-size:clamp(30px,7vw,46px);line-height:1.08;letter-spacing:-1px;margin:15px 0}
+    .searchbar{display:flex;gap:8px;margin:15px 0}
+    .searchbar input{min-width:0;flex:1}
+    .store-card{cursor:pointer}
+    .store-card:focus{outline:3px solid #e21d2b}
+    .store-symbol{height:135px;display:grid;place-items:center;background:#fff0f1;font-size:48px}
+    .food-symbol{height:130px;display:grid;place-items:center;background:#fff0f1;font-size:42px}
+    .empty-state{text-align:center;background:white;border:1px dashed #d1d5db;padding:25px;border-radius:16px;color:#6b7280}
+    .cart-line{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding:12px 0}
+    .cart-line button{padding:6px 10px}
+    .total-line{display:flex;justify-content:space-between;font-size:19px;font-weight:900;margin:18px 0}
+    .status-note{padding:12px;border-radius:12px;background:#fff5e8;color:#75420b;margin:12px 0}
+    .field{margin:12px 0}
+    .field label{display:block;margin-bottom:6px}
+    footer{text-align:center;padding:28px 10px;color:#6b7280}
+    [hidden]{display:none!important}
+  </style>
+</head>
 <body>
-<header class="topbar"><div class="brand">MHAC <span>DELIVERY</span></div><span class="pill">FOOD • PICKUP • DELIVERY</span></header>
+<header class="topbar">
+  <div class="brand">MHAC <span>DELIVERY</span></div>
+  <span class="pill">FOOD • PICKUP • DELIVERY</span>
+</header>
+
 <main class="container">
-<section class="hero"><span class="pill">WELCOME TO MHAC</span><h1>Masarap na pagkain,<br>delivered sa iyo.</h1><p>Pumili ng store, tingnan ang food photos, at mag-order nang madali.</p></section>
-<div class="toolbar"><input id="search" class="input" placeholder="Search store or food…"><button class="btn red" id="cartToggle">🛒 Cart <span id="cartCount">0</span></button></div>
-<h2 class="section-title" id="listTitle">Choose a food store</h2><div id="stores" class="store-grid"></div>
-<section class="panel" id="menuPanel" hidden><div class="toolbar"><button class="btn outline" id="backStores">← Stores</button><h2 id="storeTitle"></h2></div><div id="categories" class="choice-list"></div><div id="foods" class="food-list"></div></section>
-<section class="panel" id="cartPanel" hidden><h2>Your Cart</h2><div id="cartItems"></div><div class="toolbar"><b>Total: <span id="cartTotal">₱0.00</span></b><button class="btn red" id="checkout">Checkout</button></div><div id="checkoutFields" hidden><div class="field"><label>Customer name</label><input class="input" id="customerName"></div><div class="field"><label>Phone</label><input class="input" id="customerPhone"></div><div class="field"><label>Delivery address</label><textarea class="input" id="customerAddress"></textarea></div><div class="field"><label>Payment</label><select class="input" id="payment"><option>Cash on Delivery</option><option>GCash</option></select></div><button class="btn red" id="sendOrder">Place order</button><p class="muted" id="orderNotice">Connect the new Firebase project before placing live orders.</p></div></section>
-<footer>MHAC Delivery • New build preview</footer>
+  <section class="welcome">
+    <span class="pill">WELCOME TO MHAC</span>
+    <h1>Masarap na pagkain,<br>delivered sa iyo.</h1>
+    <p>Pumili ng store, tingnan ang menu, at ihanda ang iyong order.</p>
+  </section>
+
+  <div class="searchbar">
+    <input class="input" id="search" placeholder="🔎 Search store or food..." aria-label="Search store or food">
+    <button class="btn red" id="cartToggle">🛒 Cart <span id="cartCount">0</span></button>
+  </div>
+
+  <div id="notice" class="status-note">Binubuksan ang menu...</div>
+
+  <section id="storeSection">
+    <h2 class="section-title">Pumili ng Food Store</h2>
+    <div id="stores" class="store-grid">
+      <div class="empty-state">Nilo-load ang mga store...</div>
+    </div>
+  </section>
+
+  <section class="panel" id="menuPanel" hidden>
+    <div class="toolbar">
+      <button class="btn outline" id="backStores">← Mga Store</button>
+      <h2 id="storeTitle">Menu</h2>
+    </div>
+    <div id="categories"></div>
+    <div id="foods" class="food-list"></div>
+  </section>
+
+  <section class="panel" id="cartPanel" hidden>
+    <div class="toolbar">
+      <h2>🛒 Iyong Cart</h2>
+      <button class="btn outline" id="closeCart">Isara</button>
+    </div>
+    <div id="cartItems"></div>
+    <div class="total-line"><span>Subtotal</span><span id="cartTotal">₱0.00</span></div>
+    <p class="muted">Ang delivery fee at service fee ay hindi pa kinakalkula sa preview na ito.</p>
+    <button class="btn red" id="checkout">Mag-checkout</button>
+
+    <div id="checkoutFields" hidden>
+      <div class="field"><label for="customerName">Pangalan</label><input class="input" id="customerName" autocomplete="name"></div>
+      <div class="field"><label for="customerPhone">Cellphone number</label><input class="input" id="customerPhone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="customerAddress">Delivery address / landmark</label><textarea class="input" id="customerAddress" rows="3"></textarea></div>
+      <div class="field"><label for="payment">Payment method</label>
+        <select class="input" id="payment"><option>Cash on Delivery</option><option>GCash</option></select>
+      </div>
+      <button class="btn red" id="sendOrder">Ihanda ang Order</button>
+      <p id="orderResult" class="muted"></p>
+    </div>
+  </section>
+
+  <footer>MHAC Delivery • New Website Preview</footer>
 </main>
+
 <script type="module">
-import {db,firebaseReady} from './assets/app.js';
-import {doc,getDoc,collection,addDoc,serverTimestamp} from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js';
-import {money,esc} from './assets/app.js';
-let menu={stores:[]}, activeStore=null, activeCategory=null, cart=[];
-const $=id=>document.getElementById(id);
-function placeholder(name){return 'https://placehold.co/640x480/fce7e7/7f1d1d?text='+encodeURIComponent(name||'Food photo')}
-async function load(){if(!firebaseReady){$('stores').innerHTML='<div class="notice">Preview mode: add your NEW Firebase web config in assets/firebase-config.js to load saved menu data.</div>';return}
-try{const snap=await getDoc(doc(db,'settings','menu'));if(snap.exists())menu=snap.data();renderStores()}catch(e){$('stores').innerHTML='<div class="notice">Menu could not load: '+esc(e.message)+'</div>'}}
-function renderStores(){ $('stores').innerHTML=(menu.stores||[]).filter(s=>s.published!==false).map(s=>`<article class="card"><img class="photo" src="${esc(s.photoUrl||s.logoUrl||placeholder(s.name))}" alt="${esc(s.name)}"><div class="card-body"><h3>${esc(s.name)}</h3><button class="btn red" data-store="${esc(s.id)}">View menu</button></div></article>`).join('')||'<div class="empty">No published stores yet. Add stores in Admin.</div>';document.querySelectorAll('[data-store]').forEach(b=>b.onclick=()=>openStore(b.dataset.store))}
-function openStore(id){activeStore=(menu.stores||[]).find(s=>s.id===id);if(!activeStore)return;$('menuPanel').hidden=false;$('storeTitle').textContent=activeStore.name;$('categories').innerHTML=(activeStore.categories||[]).map(c=>`<button class="btn outline" data-cat="${esc(c.id)}">${esc(c.name)}</button>`).join('');document.querySelectorAll('[data-cat]').forEach(b=>b.onclick=()=>renderFoods(b.dataset.cat));const first=(activeStore.categories||[])[0];renderFoods(first?.id);window.scrollTo({top:$('menuPanel').offsetTop,behavior:'smooth'})}
-function renderFoods(cid){activeCategory=(activeStore.categories||[]).find(c=>c.id===cid);$('foods').innerHTML=(activeCategory?.foods||[]).filter(f=>f.available!==false).map(f=>`<article class="food-row"><img class="photo" src="${esc(f.photoUrl||placeholder(f.name))}" alt="${esc(f.name)}"><div><h3>${esc(f.name)}</h3><div class="price">${money(f.price)}</div><div class="muted">${(f.choices||[]).length?'Choices available':''}</div></div><button class="btn red" data-add="${esc(f.id)}">＋</button></article>`).join('')||'<div class="empty">No food items in this category.</div>';document.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{const f=activeCategory.foods.find(x=>x.id===b.dataset.add);if(f){cart.push({storeId:activeStore.id,storeName:activeStore.name,...f});renderCart()}})}
-function renderCart(){$('cartCount').textContent=cart.length;$('cartItems').innerHTML=cart.map((f,i)=>`<div class="toolbar"><span>${esc(f.name)} — ${money(f.price)}</span><button class="btn outline" data-remove="${i}">Remove</button></div>`).join('')||'<p class="muted">Cart is empty.</p>';$('cartTotal').textContent=money(cart.reduce((a,f)=>a+Number(f.price||0),0));document.querySelectorAll('[data-remove]').forEach(b=>b.onclick=()=>{cart.splice(+b.dataset.remove,1);renderCart()})}
-$('backStores').onclick=()=>{$('menuPanel').hidden=true;window.scrollTo({top:0,behavior:'smooth'})};$('cartToggle').onclick=()=>{$('cartPanel').hidden=!$('cartPanel').hidden;renderCart()};$('checkout').onclick=()=>{$('checkoutFields').hidden=!$('checkoutFields').hidden};
-$('sendOrder').onclick=async()=>{if(!firebaseReady){$('orderNotice').textContent='Firebase is not configured yet. No order was sent.';return}try{const ref=await addDoc(collection(db,'orders'),{customerName:$('customerName').value.trim(),customerPhone:$('customerPhone').value.trim(),address:$('customerAddress').value.trim(),payment:$('payment').value,items:cart.map(f=>({name:f.name,price:f.price,storeId:f.storeId,storeName:f.storeName})),subtotal:cart.reduce((a,f)=>a+Number(f.price||0),0),status:'NEW',createdAt:serverTimestamp()});$('orderNotice').textContent='Order sent: '+ref.id;cart=[];renderCart()}catch(e){$('orderNotice').textContent='Could not send order: '+e.message}};
-$('search').oninput=()=>{const q=$('search').value.toLowerCase();document.querySelectorAll('#stores .card').forEach(c=>c.hidden=!c.innerText.toLowerCase().includes(q))};
-load();
-</script></body></html>
+import { db, firebaseReady, money, esc } from "./app.js";
+import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+
+const $ = id => document.getElementById(id);
+let menu = {stores:[]};
+let activeStore = null;
+let cart = [];
+
+function say(message) { $("notice").textContent = message; }
+
+function storeName(store) {
+  return store.name || store.storeName || "Food Store";
+}
+
+function allFoods(store) {
+  return (store.categories || []).flatMap(category =>
+    (category.foods || []).map(food => ({...food, categoryName:category.name || "Menu"}))
+  );
+}
+
+function makeCard(store) {
+  const card = document.createElement("article");
+  card.className = "card store-card";
+  const symbol = document.createElement("div");
+  symbol.className = "store-symbol";
+  symbol.textContent = "🍽️";
+  const body = document.createElement("div");
+  body.className = "card-body";
+  const title = document.createElement("h3");
+  title.textContent = storeName(store);
+  const desc = document.createElement("p");
+  desc.className = "muted";
+  desc.textContent = allFoods(store).length + " menu item(s)";
+  const btn = document.createElement("button");
+  btn.className = "btn red";
+  btn.textContent = "Tingnan ang Menu";
+  btn.onclick = () => openStore(store);
+  body.append(title, desc, btn);
+  card.append(symbol, body);
+  card.onclick = event => { if (event.target !== btn) openStore(store); };
+  return card;
+}
+
+function renderStores(filter = "") {
+  const root = $("stores");
+  root.innerHTML = "";
+  const query = filter.toLowerCase().trim();
+  const stores = (menu.stores || []).filter(store =>
+    storeName(store).toLowerCase().includes(query) ||
+    allFoods(store).some(food => (food.name || "").toLowerCase().includes(query))
+  );
+  stores.forEach(store => root.append(makeCard(store)));
+  if (!stores.length) {
+    const empty = document.createElement("div");
+    empty.className = "empty-state";
+    empty.textContent = menu.stores.length
+      ? "Walang tumugmang store o pagkain sa search."
+      : "Wala pang published menu. Idagdag muna ang stores at pagkain sa Admin.";
+    root.append(empty);
+  }
+}
+
+function openStore(store) {
+  activeStore = store;
+  $("storeSection").hidden = true;
+  $("menuPanel").hidden = false;
+  $("cartPanel").hidden = true;
+  $("storeTitle").textContent = storeName(store);
+  $("categories").innerHTML = "";
+  $("foods").innerHTML = "";
+
+  const categories = store.categories || [];
+  categories.forEach(category => {
+    const heading = document.createElement("h3");
+    heading.textContent = category.name || "Menu";
+    $("categories").append(heading);
+
+    (category.foods || []).forEach(food => {
+      const row = document.createElement("article");
+      row.className = "food-row";
+      const photo = document.createElement("div");
+      photo.className = "food-symbol";
+      photo.textContent = "🍱";
+
+      const info = document.createElement("div");
+      const name = document.createElement("h3");
+      name.textContent = food.name || "Food item";
+      const price = document.createElement("div");
+      price.className = "price";
+      price.textContent = money(food.price);
+      info.append(name, price);
+
+      const add = document.createElement("button");
+      add.className = "btn red";
+      add.textContent = "Add";
+      add.onclick = () => addToCart(store, category, food);
+      row.append(photo, info, add);
+      $("foods").append(row);
+    });
+  });
+
+  if (!$("foods").children.length) {
+    $("foods").innerHTML = '<div class="empty-state">Wala pang food items sa store na ito.</div>';
+  }
+}
+
+function addToCart(store, category, food) {
+  const key = [storeName(store), category.name, food.name].join("|");
+  const found = cart.find(item => item.key === key);
+  if (found) found.qty += 1;
+  else cart.push({
+    key, store:storeName(store), category:category.name || "Menu",
+    name:food.name || "Food item", price:Number(food.price) || 0, qty:1
+  });
+  renderCart();
+  say((food.name || "Food") + " naidagdag sa cart.");
+}
+
+function renderCart() {
+  $("cartCount").textContent = cart.reduce((sum,item)=>sum+item.qty,0);
+  $("cartItems").innerHTML = "";
+  if (!cart.length) {
+    $("cartItems").innerHTML = '<div class="empty-state">Wala pang laman ang cart.</div>';
+  }
+
+  cart.forEach(item => {
+    const row = document.createElement("div");
+    row.className = "cart-line";
+    const detail = document.createElement("div");
+    const name = document.createElement("b");
+    name.textContent = item.name + " × " + item.qty;
+    const store = document.createElement("div");
+    store.className = "muted";
+    store.textContent = item.store;
+    const price = document.createElement("div");
+    price.textContent = money(item.price * item.qty);
+    detail.append(name, store, price);
+
+    const actions = document.createElement("div");
+    const minus = document.createElement("button");
+    minus.className = "btn outline";
+    minus.textContent = "−";
+    minus.onclick = () => { item.qty--; if(item.qty <= 0) cart=cart.filter(x=>x!==item); renderCart(); };
+    const plus = document.createElement("button");
+    plus.className = "btn outline";
+    plus.textContent = "+";
+    plus.onclick = () => { item.qty++; renderCart(); };
+    actions.append(minus, plus);
+    row.append(detail, actions);
+    $("cartItems").append(row);
+  });
+
+  $("cartTotal").textContent = money(cart.reduce((sum,item)=>sum+item.price*item.qty,0));
+}
+
+$("backStores").onclick = () => {
+  $("menuPanel").hidden = true;
+  $("storeSection").hidden = false;
+};
+$("cartToggle").onclick = () => {
+  $("menuPanel").hidden = true;
+  $("storeSection").hidden = true;
+  $("cartPanel").hidden = false;
+};
+$("closeCart").onclick = () => {
+  $("cartPanel").hidden = true;
+  if(activeStore) $("menuPanel").hidden = false;
+  else $("storeSection").hidden = false;
+};
+$("checkout").onclick = () => {
+  if (!cart.length) { say("Magdagdag muna ng pagkain sa cart."); return; }
+  $("checkoutFields").hidden = false;
+};
+$("sendOrder").onclick = () => {
+  $("orderResult").textContent =
+    "Preview mode lamang: hindi pa naipapadala ang order. Ikonekta at i-secure muna ang bagong Firebase bago tumanggap ng tunay na orders.";
+};
+$("search").oninput = event => {
+  $("storeSection").hidden = false;
+  $("menuPanel").hidden = true;
+  $("cartPanel").hidden = true;
+  renderStores(event.target.value);
+};
+
+async function loadMenu() {
+  if (!firebaseReady || !db) {
+    say("Preview mode: ikonekta muna ang bagong Firebase project para lumabas ang published menu.");
+    renderStores();
+    return;
+  }
+  try {
+    const snapshot = await getDoc(doc(db, "settings", "menu"));
+    menu = snapshot.exists() ? snapshot.data() : {stores:[]};
+    if (!Array.isArray(menu.stores)) menu.stores = [];
+    say(snapshot.exists() ? "Menu loaded." : "Wala pang published menu sa bagong Firebase.");
+    renderStores();
+  } catch(error) {
+    say("Hindi ma-load ang menu. Suriin ang Firebase config at Firestore rules.");
+    renderStores();
+    console.error(error);
+  }
+}
+
+renderCart();
+loadMenu();
+</script>
+</body>
+</html>
