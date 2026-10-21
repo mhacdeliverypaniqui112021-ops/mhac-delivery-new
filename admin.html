@@ -324,7 +324,26 @@ button.danger,.danger{
   background:#fff!important;
 }
 
-\n</style><style id="new-order-breakdown-css">
+\n
+/* FINAL MOBILE UI TUNE: independent screens, no extra collapse controls outside Store/Menu Manager */
+#app:not(.hidden)>.card[data-mhac-screen="riders"] .adminSectionToggle,
+#app:not(.hidden)>.card[data-mhac-screen="gcash"] .adminSectionToggle,
+#app:not(.hidden)>.card[data-mhac-screen="business"] .adminSectionToggle,
+#app:not(.hidden)>.card[data-mhac-screen="earnings"] .adminSectionToggle,
+#app:not(.hidden)>.card[data-mhac-screen="account"] .adminSectionToggle,
+#app:not(.hidden)>.card[data-mhac-screen="orders"] .adminSectionToggle {display:none!important}
+#app:not(.hidden)>.card[data-mhac-screen]:not([data-mhac-screen="menu"]) .adminSectionArrow{display:none!important}
+#app:not(.hidden)>.card[data-mhac-screen] {font-family:Arial,Helvetica,sans-serif!important;font-size:15px!important;line-height:1.45!important}
+#app:not(.hidden)>.card[data-mhac-screen] h2,
+#app:not(.hidden)>.card[data-mhac-screen] h3 {font-family:Arial,Helvetica,sans-serif!important;letter-spacing:0!important;line-height:1.25!important;overflow-wrap:anywhere}
+.mhacScreenTop{align-items:center!important;gap:12px!important;padding-bottom:12px!important;margin-bottom:14px!important}
+.mhacScreenHeading b{font-size:21px!important;font-weight:800!important;line-height:1.22!important;letter-spacing:0!important}
+.mhacScreenHeading small{font-size:13px!important;line-height:1.35!important;margin-top:4px!important}
+#app:not(.hidden)>.card[data-mhac-screen]:not([data-mhac-screen="menu"]) .card,
+#app:not(.hidden)>.card[data-mhac-screen]:not([data-mhac-screen="menu"]) .settingsCard{margin-top:10px!important}
+@media(max-width:600px){.mhacScreenHeading b{font-size:20px!important}.mhacScreenHeading small{font-size:13px!important}}
+
+</style><style id="new-order-breakdown-css">
 .newOB-drawer{border:4px solid #222!important;border-radius:16px!important;background:#fff!important;padding:16px 12px 12px!important;box-sizing:border-box!important;color:#111!important}
 .newOB-customer{padding:0 0 10px!important;border-bottom:1px solid #e5e5e5!important;font-size:14px!important;line-height:1.55!important}
 .newOB-orderNo,.newOB-statusName{font-size:17px!important;font-weight:900!important}
@@ -4483,6 +4502,43 @@ setTimeout(function(){
   else initMHACScreens();
 })();
 </script>
+
+
+<style id="MHAC_FULL_SCREEN_PAGE_DESIGN">
+/* Full-screen page design: roomy, colorful background, readable typography */
+:root{--mhac-ink:#171923;--mhac-red:#b91c2c;--mhac-bg:#eef2f8;--mhac-card:#ffffff;}
+html,body{min-height:100%;background:linear-gradient(145deg,#e8edf7 0%,#f7f3f1 48%,#fbe9e8 100%)!important;color:var(--mhac-ink)!important;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important}
+#app{max-width:100%!important;width:100%!important;padding:clamp(12px,3vw,26px)!important;box-sizing:border-box!important;background:transparent!important}
+#app:not(.hidden)>.card.mhacScreenActive{min-height:calc(100dvh - 190px)!important;padding:clamp(20px,4vw,34px)!important;margin:0 auto 16px!important;border-radius:24px!important;background:rgba(255,255,255,.97)!important;border:1px solid #d9deea!important;box-shadow:0 12px 34px rgba(25,35,60,.10)!important;box-sizing:border-box!important}
+.mhacHomeScreen{min-height:calc(100dvh - 190px)!important;padding:clamp(20px,4vw,34px)!important;border-radius:24px!important;background:rgba(255,255,255,.96)!important;border:1px solid #d9deea!important;box-shadow:0 12px 34px rgba(25,35,60,.10)!important;box-sizing:border-box!important}
+.mhacHomeHero{padding:clamp(24px,5vw,42px)!important;min-height:140px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;border-radius:24px!important;background:linear-gradient(125deg,#20232d,#7f1724 58%,#b91c2c)!important;color:#fff!important;margin-bottom:22px!important}
+.mhacHomeHero b{font-size:clamp(28px,5vw,38px)!important;line-height:1.15!important;letter-spacing:.2px!important}
+.mhacHomeHero span{font-size:clamp(14px,2.4vw,18px)!important;line-height:1.5!important;margin-top:10px!important;color:#ffe5e8!important}
+.mhacHomeGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:clamp(12px,2.5vw,20px)!important}
+.mhacHomeTile{min-height:clamp(155px,22vh,220px)!important;padding:clamp(18px,3vw,28px)!important;border-radius:22px!important;border:1px solid #d7dce7!important;background:linear-gradient(155deg,#fff,#f5f7fb)!important;box-shadow:0 6px 18px rgba(20,30,50,.07)!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:12px!important;text-align:left!important;color:#171923!important;white-space:normal!important}
+.mhacTileIcon{width:clamp(52px,8vw,68px)!important;height:clamp(52px,8vw,68px)!important;min-width:clamp(52px,8vw,68px)!important;border-radius:18px!important;background:#fff0f1!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:clamp(28px,4vw,38px)!important}
+.mhacTileText{display:block!important;min-width:0!important}
+.mhacTileText b{display:block!important;font-size:clamp(18px,2.8vw,24px)!important;line-height:1.25!important;letter-spacing:0!important;margin:0 0 7px!important;overflow-wrap:anywhere!important}
+.mhacTileText small{display:block!important;font-size:clamp(14px,2.1vw,17px)!important;line-height:1.45!important;color:#626979!important;font-weight:600!important}
+.mhacHomeTile.mhacWide{grid-column:1/-1!important;min-height:135px!important;flex-direction:row!important;align-items:center!important}
+.mhacSwipeHint{font-size:14px!important;color:#697184!important;margin-top:24px!important;text-align:center!important}
+.mhacScreenTop{gap:16px!important;padding:0 0 18px!important;margin:0 0 22px!important;border-bottom:3px solid #c61f32!important}
+.mhacBackBtn{width:58px!important;height:58px!important;min-width:58px!important;min-height:58px!important;border-radius:18px!important;font-size:34px!important;background:#fff!important;border:2px solid #222!important;color:#111!important;box-shadow:0 3px 10px #0000000b!important}
+.mhacScreenHeading b{font-size:clamp(25px,4vw,32px)!important;line-height:1.2!important;letter-spacing:0!important}
+.mhacScreenHeading small{font-size:clamp(15px,2.3vw,18px)!important;line-height:1.4!important;margin-top:5px!important;color:#687080!important}
+/* Remove redundant collapse headings everywhere except the Store/Menu Manager screen. */
+#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionToggle,
+#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionBody{display:block!important}
+#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionToggle{display:none!important}
+#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionBody.hidden{display:block!important}
+#app>.card[data-mhac-screen="menu"]>.adminSectionToggle{display:flex!important}
+#app>.card[data-mhac-screen="menu"]>.adminSectionBody.hidden{display:none!important}
+/* Larger, less crowded controls and text on individual pages */
+#app:not(.hidden)>.card.mhacScreenActive input:not([type="checkbox"]):not([type="radio"]),#app:not(.hidden)>.card.mhacScreenActive select,#app:not(.hidden)>.card.mhacScreenActive textarea{font-size:17px!important;min-height:48px!important;border-radius:13px!important}
+#app:not(.hidden)>.card.mhacScreenActive button{border-radius:14px!important;font-weight:750!important}
+#app:not(.hidden)>.card.mhacScreenActive p.status{font-size:16px!important;line-height:1.55!important}
+@media(max-width:520px){#app{padding:10px!important}.mhacHomeScreen{padding:14px!important}.mhacHomeGrid{gap:10px!important}.mhacHomeTile{padding:14px!important;min-height:165px!important}.mhacTileText b{font-size:17px!important}.mhacTileText small{font-size:13px!important}.mhacHomeTile.mhacWide{min-height:125px!important}#app:not(.hidden)>.card.mhacScreenActive{padding:16px!important;min-height:calc(100dvh - 175px)!important}.mhacBackBtn{width:50px!important;height:50px!important;min-width:50px!important;min-height:50px!important}}
+</style>
 
 </body></html><style id="MHAC_FINAL_COMPACT_READABLE_20260831">
 /* FINAL COMPACT + READABLE — requested mobile layout */
