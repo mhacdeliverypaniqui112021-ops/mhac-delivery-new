@@ -4598,3 +4598,27 @@ body{font-size:15px!important;line-height:1.35!important}
 /* V4.1.76 PRESERVE MENU MANAGER — ORDER DRAWER BORDER ONLY */
 .orderDetailPanel{border:4px solid #222 !important;}
 </style>
+<style id="MHAC_SECTION_PANEL_COLORS_V1">
+/* Each section is its own screen; use a distinct soft background and cleaner inner panels. */
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="account"]{background:linear-gradient(145deg,#fff7ed 0%,#ffffff 62%,#ffedd5 100%)!important;border-color:#fed7aa!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="hours"]{background:linear-gradient(145deg,#eff6ff 0%,#ffffff 62%,#dbeafe 100%)!important;border-color:#bfdbfe!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="earnings"]{background:linear-gradient(145deg,#ecfdf5 0%,#ffffff 62%,#d1fae5 100%)!important;border-color:#a7f3d0!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="riders"]{background:linear-gradient(145deg,#f5f3ff 0%,#ffffff 62%,#ede9fe 100%)!important;border-color:#ddd6fe!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="gcash"]{background:linear-gradient(145deg,#ecfeff 0%,#ffffff 62%,#cffafe 100%)!important;border-color:#a5f3fc!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"]{background:linear-gradient(145deg,#fff1f2 0%,#ffffff 62%,#ffe4e6 100%)!important;border-color:#fecdd3!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="orders"]{background:linear-gradient(145deg,#f8fafc 0%,#ffffff 62%,#e2e8f0 100%)!important;border-color:#cbd5e1!important}
+/* Distinct panel boxes inside each screen; leave inputs, buttons and menu editor behavior intact. */
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="account"] .settingsCard,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="hours"] .settingsCard{background:#fffaf5!important;border-color:#fed7aa!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="earnings"] .settingsCard{background:#f0fdf4!important;border-color:#bbf7d0!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="riders"] .settingsCard{background:#f5f3ff!important;border-color:#ddd6fe!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="gcash"] .settingsCard{background:#ecfeff!important;border-color:#a5f3fc!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="orders"] .settingsCard{background:#f8fafc!important;border-color:#cbd5e1!important}
+/* Main subpanels only: retain the store/category/food accordion structure and controls. */
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionBody,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .storeCard{background:#fff!important;border-color:#fda4af!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .categoryCard{background:#fff7f8!important;border-color:#fecdd3!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodCard{background:#ffffff!important;border-color:#e5e7eb!important}
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{border-bottom-color:#be123c!important}
+</style>
+
