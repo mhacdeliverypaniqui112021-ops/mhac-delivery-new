@@ -4381,7 +4381,7 @@ setTimeout(function(){
 #app:not(.hidden)>.card.mhacScreenHidden{display:none!important}
 #app:not(.hidden)>.card.mhacScreenActive{display:block!important;animation:mhacScreenIn .18s ease-out both}
 #app:not(.hidden)>.mhacHomeScreen{display:none!important}
-#app:not(.hidden)>.mhacHomeScreen.mhacScreenActive{display:block!important}
+#app:not(.hidden)>.mhacHomeScreen.mhacScreenActive{display:none!important}
 .mhacScreenTop{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:3px 0 11px;border-bottom:2px solid #e21d25}
 .mhacBackBtn{flex:0 0 44px!important;width:44px!important;height:44px!important;min-height:44px!important;margin:0!important;border-radius:13px!important;font-size:23px!important;padding:0!important}
 .mhacScreenHeading{min-width:0;flex:1}
@@ -4436,7 +4436,7 @@ setTimeout(function(){
         oldHeading.dataset.mhacHeadingDecorated='1';
         var wrap=document.createElement('div'); wrap.className='mhacScreenTop';
         var back=document.createElement('button'); back.type='button'; back.className='mhacBackBtn'; back.textContent='‹'; back.setAttribute('aria-label','Back to dashboard');
-        back.addEventListener('click',function(){showScreen('home',-1);});
+        back.addEventListener('click',function(){if(current>0)showScreen(order[current-1],-1);});
         var head=document.createElement('div'); head.className='mhacScreenHeading';
         var title=document.createElement('b'); title.textContent=sec.title;
         var sub=document.createElement('small'); sub.textContent=sec.sub;
@@ -4445,7 +4445,7 @@ setTimeout(function(){
         oldHeading.style.display='none';
       }
     });
-    var order=['home'].concat(sections.map(function(s){return s.key;}));
+    var order=sections.map(function(s){return s.key;});
     var current=0;
     function showScreen(key,direction){
       var idx=order.indexOf(key);if(idx<0)return;current=idx;
@@ -4472,9 +4472,9 @@ setTimeout(function(){
       if(next!==current)showScreen(order[next],dx<0?1:-1);
     },{passive:true});
     // Open the dashboard first after login becomes visible; original login/Firebase logic remains untouched.
-    showScreen('home',0);
+    showScreen('account',0);
     var observer=new MutationObserver(function(){
-      if(!app.classList.contains('hidden') && app.dataset.mhacCurrentScreen!=='home' && !app.dataset.mhacUserNavigated) showScreen('home',0);
+      if(!app.classList.contains('hidden') && !app.dataset.mhacUserNavigated && app.dataset.mhacCurrentScreen!=='account') showScreen('account',0);
     });
     observer.observe(app,{attributes:true,attributeFilter:['class']});
     app.addEventListener('click',function(){app.dataset.mhacUserNavigated='1';},{capture:true,once:true});
