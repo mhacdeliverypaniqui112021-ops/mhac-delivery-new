@@ -4757,3 +4757,96 @@ header, .topbar, .appHeader, #header, .siteHeader{background:#05070a!important;c
 #app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionToggle{display:flex!important}
 @media(max-width:600px){#app:not(.hidden)>.card.mhacScreenActive{padding:16px!important;min-height:calc(100dvh - 175px)!important;margin:10px auto!important}.mhacScreenHeading b{font-size:clamp(23px,6vw,30px)!important}}
 </style>
+
+<style id="MHAC_UNIFIED_LIGHTBLUE_FULLSCREEN_V2">
+/* Unified light-blue full-screen mobile UI. No white screen panels or outer panel borders. */
+:root{color-scheme:light}
+html,body{background:#b9eaff!important;color:#111827!important;font-family:Arial,Helvetica,sans-serif!important}
+body{margin:0!important;font-size:16px!important;line-height:1.42!important}
+header,.topbar,.appHeader,#header,.siteHeader{background:#b9eaff!important;color:#111827!important;border-color:transparent!important;box-shadow:none!important}
+#app:not(.hidden){background:#b9eaff!important;color:#111827!important;padding:0!important;margin:0!important}
+#app:not(.hidden)>.card.mhacScreenActive{
+  background:#b9eaff!important;color:#111827!important;border:0!important;border-radius:0!important;
+  box-shadow:none!important;margin:0!important;width:100%!important;max-width:none!important;
+  min-height:calc(100dvh - 165px)!important;padding:20px 16px!important;box-sizing:border-box!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{
+ background:transparent!important;color:#111827!important;border:0!important;border-bottom:0!important;
+ box-shadow:none!important;border-radius:0!important;padding:0 0 18px!important;margin:0 0 18px!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h3,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading b,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading small,
+#app:not(.hidden)>.card.mhacScreenActive h1,
+#app:not(.hidden)>.card.mhacScreenActive h2,
+#app:not(.hidden)>.card.mhacScreenActive h3,
+#app:not(.hidden)>.card.mhacScreenActive h4,
+#app:not(.hidden)>.card.mhacScreenActive label,
+#app:not(.hidden)>.card.mhacScreenActive p,
+#app:not(.hidden)>.card.mhacScreenActive small,
+#app:not(.hidden)>.card.mhacScreenActive span,
+#app:not(.hidden)>.card.mhacScreenActive div,
+#app:not(.hidden)>.card.mhacScreenActive strong,
+#app:not(.hidden)>.card.mhacScreenActive b{color:#111827!important}
+/* Remove nested white boxes and decorative panel borders: all content sits on one light-blue screen. */
+#app:not(.hidden)>.card.mhacScreenActive .settingsCard,
+#app:not(.hidden)>.card.mhacScreenActive .adminSectionBody,
+#app:not(.hidden)>.card.mhacScreenActive .orderCard,
+#app:not(.hidden)>.card.mhacScreenActive .riderCard,
+#app:not(.hidden)>.card.mhacScreenActive .chatBox,
+#app:not(.hidden)>.card.mhacScreenActive .settingsBox,
+#app:not(.hidden)>.card.mhacScreenActive .metric,
+#app:not(.hidden)>.card.mhacScreenActive .gcSettings,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{
+ background:#b9eaff!important;color:#111827!important;border:0!important;border-radius:0!important;box-shadow:none!important;
+}
+/* Keep menu hierarchy readable, but use blue surfaces rather than white cards. */
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionBody,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .storeCard,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .categoryCard,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodCard,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditAccordion,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditToggle,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditDrawer,
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditGroupTitle{
+ background:#b9eaff!important;color:#111827!important;border-color:#7dd3fc!important;box-shadow:none!important;
+}
+/* Inputs intentionally remain white for clear typing areas. */
+#app:not(.hidden)>.card.mhacScreenActive input,
+#app:not(.hidden)>.card.mhacScreenActive select,
+#app:not(.hidden)>.card.mhacScreenActive textarea{
+ background:#fff!important;color:#111827!important;border:2px solid #38bdf8!important;border-radius:12px!important;
+ font-size:16px!important;line-height:1.4!important;min-height:48px!important;box-sizing:border-box!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive input::placeholder,
+#app:not(.hidden)>.card.mhacScreenActive textarea::placeholder{color:#4b5563!important;opacity:1!important}
+#app:not(.hidden)>.card.mhacScreenActive button{
+ color:#111827!important;background:#8bdcff!important;border:1px solid #38bdf8!important;border-radius:13px!important;
+ font-size:15px!important;font-weight:800!important;line-height:1.3!important;box-shadow:none!important;white-space:normal!important;
+}
+#app:not(.hidden)>.card.mhacScreenActive .mhacBackBtn,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenBack,
+#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop button{background:#38bdf8!important;color:#111827!important;border:0!important}
+/* Collapse toggles are only visible inside Store/Menu Manager. */
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionToggle,
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .sectionToggle,
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .collapseToggle,
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .accordionToggle{display:none!important}
+#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionBody{display:block!important}
+#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionToggle{display:flex!important}
+/* Metrics and action rows must wrap on narrow phone screens. */
+#metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
+#metrics .metric{min-width:0!important}
+@media(max-width:600px){
+ body{font-size:16px!important}
+ #app:not(.hidden)>.card.mhacScreenActive{padding:18px 14px!important;min-height:calc(100dvh - 165px)!important}
+ #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
+ #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2,
+ #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h3{font-size:clamp(23px,6vw,30px)!important;line-height:1.2!important}
+ #app:not(.hidden)>.card.mhacScreenActive button{min-height:44px!important;padding:9px 10px!important}
+}
+</style>
+
