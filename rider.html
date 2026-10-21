@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>MHAC Delivery — Rider</title><link rel="stylesheet" href="assets/app.css"></head>
+<body><header class="topbar"><div class="brand">MHAC <span>RIDER</span></div><span class="pill">DELIVERY TASKS</span></header>
+<main class="container"><section class="hero"><h1>Your deliveries.</h1><p>Accept orders, update delivery status, and contact the customer.</p></section><div class="notice">Connect the new Firebase project and configure rider authentication before using live orders.</div><h2 class="section-title">Orders</h2><div id="orders"><div class="empty">No live orders loaded yet.</div></div></main>
+<script type="module">
+import {db,firebaseReady,esc,money} from './assets/app.js';
+import {collection,onSnapshot,doc,updateDoc,query,orderBy} from 'https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js';
+const root=document.getElementById('orders');
+if(firebaseReady){onSnapshot(collection(db,'orders'),snap=>{root.innerHTML=snap.docs.map(d=>{const o=d.data();return `<article class="order-card"><div class="toolbar"><b>Order ${esc(d.id.slice(-6))}</b><span class="badge">${esc(o.status||'NEW')}</span></div><p>${esc(o.customerName||'Customer')}</p><p class="muted">${esc(o.address||'No address provided')}</p><p><b>${money(o.subtotal||0)}</b></p><div class="toolbar"><button class="btn" data-status="ACCEPTED" data-id="${esc(d.id)}">Accept</button><button class="btn outline" data-status="PICKED_UP" data-id="${esc(d.id)}">Picked up</button><button class="btn outline" data-status="ON_THE_WAY" data-id="${esc(d.id)}">On the way</button><button class="btn red" data-status="DELIVERED" data-id="${esc(d.id)}">Delivered</button></div></article>`}).join('')||'<div class="empty">No orders right now.</div>';root.querySelectorAll('[data-status]').forEach(b=>b.onclick=async()=>{try{await updateDoc(doc(db,'orders',b.dataset.id),{status:b.dataset.status});}catch(e){alert(e.message)}})})}
+</script></body></html>
