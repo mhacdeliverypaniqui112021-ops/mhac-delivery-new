@@ -4374,6 +4374,116 @@ setTimeout(function(){
   setInterval(()=>{ const now=day(); try { const last=localStorage.getItem(key); if(last!==now){ localStorage.setItem(key,now); refreshDailyView(); location.reload(); } }catch(e){} },60000);
 })();
 </script>
+
+<style id="MHAC_ADMIN_NATIVE_SCREEN_UI">
+#app:not(.hidden){display:block!important;max-width:760px!important;margin:0 auto!important;padding:8px!important}
+#app:not(.hidden)>.card{width:100%!important;max-width:100%!important;min-width:0!important;margin:8px 0!important;box-sizing:border-box!important}
+#app:not(.hidden)>.card.mhacScreenHidden{display:none!important}
+#app:not(.hidden)>.card.mhacScreenActive{display:block!important;animation:mhacScreenIn .18s ease-out both}
+#app:not(.hidden)>.mhacHomeScreen{display:none!important}
+#app:not(.hidden)>.mhacHomeScreen.mhacScreenActive{display:block!important}
+.mhacScreenTop{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:3px 0 11px;border-bottom:2px solid #e21d25}
+.mhacBackBtn{flex:0 0 44px!important;width:44px!important;height:44px!important;min-height:44px!important;margin:0!important;border-radius:13px!important;font-size:23px!important;padding:0!important}
+.mhacScreenHeading{min-width:0;flex:1}
+.mhacScreenHeading b{display:block;font-size:20px;line-height:1.2}
+.mhacScreenHeading small{display:block;color:#666;font-size:12px;margin-top:3px}
+.mhacHomeBrand{padding:15px;border-radius:18px;background:linear-gradient(135deg,#171717,#4a0909);color:#fff;margin-bottom:12px}
+.mhacHomeBrand b{display:block;font-size:23px;letter-spacing:.3px}
+.mhacHomeBrand span{display:block;font-size:12px;color:#f4c8c8;margin-top:5px}
+.mhacHomeGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.mhacHomeTile{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:8px!important;min-height:112px!important;margin:0!important;padding:14px!important;border:1px solid #dedede!important;border-radius:16px!important;background:#fff!important;box-shadow:0 2px 7px #0000000a!important;text-align:left!important;white-space:normal!important}
+.mhacHomeTile .mhacTileIcon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:#fff0f0;font-size:22px}
+.mhacHomeTile b{font-size:14px;line-height:1.2}
+.mhacHomeTile small{font-size:11px;color:#666;line-height:1.25}
+.mhacHomeTile.mhacWide{grid-column:1/-1;min-height:82px;flex-direction:row!important;align-items:center!important}
+.mhacHomeTile.mhacWide .mhacTileText{flex:1}
+.mhacSwipeHint{text-align:center;color:#777;font-size:11px;padding:10px 0 2px}
+@keyframes mhacScreenIn{from{opacity:.65;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
+@media(max-width:380px){.mhacHomeGrid{gap:7px}.mhacHomeTile{padding:10px;min-height:104px}.mhacHomeTile b{font-size:13px}.mhacScreenHeading b{font-size:18px}}
+</style>
+<script id="MHAC_ADMIN_SWIPE_SCREENS_UI">
+(function(){
+  function initMHACScreens(){
+    var app=document.getElementById('app');
+    if(!app || app.dataset.mhacScreensReady==='1') return;
+    var cards=Array.prototype.filter.call(app.children,function(el){return el.classList && el.classList.contains('card');});
+    if(cards.length<7) return;
+    app.dataset.mhacScreensReady='1';
+    var sections=[
+      {key:'account',title:'ADMIN ACCOUNT',sub:'Account and notification settings',icon:'👤',desc:'Account details, logout, alerts',card:cards[0]},
+      {key:'business',title:'BUSINESS HOURS',sub:'Opening hours and day off',icon:'🕒',desc:'Open time, close time, closed day',card:cards[3]},
+      {key:'earnings',title:'DELIVERY & EARNINGS',sub:'Delivery totals and accounting',icon:'📊',desc:'Earnings and rider accounting',card:cards[1]},
+      {key:'riders',title:'RIDERS',sub:'Rider approval and management',icon:'🏍️',desc:'Review riders and approvals',card:cards[5]},
+      {key:'gcash',title:'GCASH PAYMENT',sub:'Customer payment settings',icon:'💳',desc:'GCash number and QR settings',card:cards[2]},
+      {key:'menu',title:'STORE / MENU MANAGER',sub:'Stores, categories and food editor',icon:'🏪',desc:'Manage stores, food and choices',card:cards[6]},
+      {key:'orders',title:'INCOMING ORDERS',sub:'Order handling and rider assignment',icon:'📦',desc:'View orders, chat and assign riders',card:cards[4]}
+    ];
+    var home=document.createElement('section');
+    home.className='card mhacHomeScreen';
+    home.innerHTML='<div class="mhacHomeBrand"><b>MHAC DELIVERY</b><span>ADMIN CONTROL CENTER · FAST • SAFE • ON TIME</span></div><div class="mhacHomeGrid"></div><div class="mhacSwipeHint">Piliin ang section o mag-swipe pakaliwa / pakanan</div>';
+    app.insertBefore(home,app.firstChild);
+    var grid=home.querySelector('.mhacHomeGrid');
+    sections.forEach(function(sec){
+      var b=document.createElement('button');
+      b.type='button'; b.className='mhacHomeTile'+(sec.key==='orders'?' mhacWide':'');
+      b.innerHTML='<span class="mhacTileIcon">'+sec.icon+'</span><span class="mhacTileText"><b>'+sec.title+'</b><small>'+sec.desc+'</small></span>';
+      b.addEventListener('click',function(){showScreen(sec.key,1);});
+      grid.appendChild(b);
+      var card=sec.card;
+      card.dataset.mhacScreen=sec.key;
+      var oldHeading=card.querySelector(':scope > h2, :scope > .adminSectionToggle');
+      if(oldHeading && !oldHeading.dataset.mhacHeadingDecorated){
+        oldHeading.dataset.mhacHeadingDecorated='1';
+        var wrap=document.createElement('div'); wrap.className='mhacScreenTop';
+        var back=document.createElement('button'); back.type='button'; back.className='mhacBackBtn'; back.textContent='‹'; back.setAttribute('aria-label','Back to dashboard');
+        back.addEventListener('click',function(){showScreen('home',-1);});
+        var head=document.createElement('div'); head.className='mhacScreenHeading';
+        var title=document.createElement('b'); title.textContent=sec.title;
+        var sub=document.createElement('small'); sub.textContent=sec.sub;
+        head.appendChild(title);head.appendChild(sub);wrap.appendChild(back);wrap.appendChild(head);
+        oldHeading.parentNode.insertBefore(wrap,oldHeading);
+        oldHeading.style.display='none';
+      }
+    });
+    var order=['home'].concat(sections.map(function(s){return s.key;}));
+    var current=0;
+    function showScreen(key,direction){
+      var idx=order.indexOf(key);if(idx<0)return;current=idx;
+      home.classList.toggle('mhacScreenActive',key==='home');
+      sections.forEach(function(sec){
+        sec.card.classList.toggle('mhacScreenActive',sec.key===key);
+        sec.card.classList.toggle('mhacScreenHidden',sec.key!==key);
+      });
+      app.dataset.mhacCurrentScreen=key;
+      try{window.scrollTo({top:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}
+    }
+    var startX=0,startY=0;
+    app.addEventListener('touchstart',function(e){
+      if(!e.touches||e.touches.length!==1)return;
+      startX=e.touches[0].clientX;startY=e.touches[0].clientY;
+    },{passive:true});
+    app.addEventListener('touchend',function(e){
+      if(!e.changedTouches||e.changedTouches.length!==1)return;
+      var dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;
+      if(Math.abs(dx)<85||Math.abs(dx)<Math.abs(dy)*1.25)return;
+      var target=e.target;
+      if(target&&target.closest&&target.closest('input,textarea,select,button,[contenteditable="true"],.storeCategories,.directFoodList,.chatPanel,.chatMessages'))return;
+      var next=Math.max(0,Math.min(order.length-1,current+(dx<0?1:-1)));
+      if(next!==current)showScreen(order[next],dx<0?1:-1);
+    },{passive:true});
+    // Open the dashboard first after login becomes visible; original login/Firebase logic remains untouched.
+    showScreen('home',0);
+    var observer=new MutationObserver(function(){
+      if(!app.classList.contains('hidden') && app.dataset.mhacCurrentScreen!=='home' && !app.dataset.mhacUserNavigated) showScreen('home',0);
+    });
+    observer.observe(app,{attributes:true,attributeFilter:['class']});
+    app.addEventListener('click',function(){app.dataset.mhacUserNavigated='1';},{capture:true,once:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMHACScreens);
+  else initMHACScreens();
+})();
+</script>
+
 </body></html><style id="MHAC_FINAL_COMPACT_READABLE_20260831">
 /* FINAL COMPACT + READABLE — requested mobile layout */
 body{font-size:15px!important;line-height:1.35!important}
