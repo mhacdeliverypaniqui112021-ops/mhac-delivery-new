@@ -1,56 +1,55 @@
 <!doctype html>
 <html lang="fil">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#e21d2b">
-  <title>MHAC Delivery | Order Food</title>
-  <link rel="stylesheet" href="app.css">
-  <style>
-    .welcome {background:linear-gradient(135deg,#fff,#fff0f1);border:1px solid #f3d5d8;border-radius:22px;padding:25px;margin:18px 0}
-    .welcome h1{font-size:clamp(30px,7vw,46px);line-height:1.08;letter-spacing:-1px;margin:15px 0}
-    .searchbar{display:flex;gap:8px;margin:15px 0}
-    .searchbar input{min-width:0;flex:1}
-    .store-card{cursor:pointer}
-    .store-card:focus{outline:3px solid #e21d2b}
-    .store-symbol{height:135px;display:grid;place-items:center;background:#fff0f1;font-size:48px}
-    .food-symbol{height:130px;display:grid;place-items:center;background:#fff0f1;font-size:42px}
-    .empty-state{text-align:center;background:white;border:1px dashed #d1d5db;padding:25px;border-radius:16px;color:#6b7280}
-    .cart-line{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #eee;padding:12px 0}
-    .cart-line button{padding:6px 10px}
-    .total-line{display:flex;justify-content:space-between;font-size:19px;font-weight:900;margin:18px 0}
-    .status-note{padding:12px;border-radius:12px;background:#fff5e8;color:#75420b;margin:12px 0}
-    .field{margin:12px 0}
-    .field label{display:block;margin-bottom:6px}
-    footer{text-align:center;padding:28px 10px;color:#6b7280}
-    [hidden]{display:none!important}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e21d2b">
+<title>MHAC Delivery | Order Food</title>
+<link rel="stylesheet" href="app.css">
+<style>
+.welcome{background:linear-gradient(135deg,#fff,#fff0f1);border:1px solid #f3d5d8;border-radius:22px;padding:24px;margin:18px 0}
+.welcome h1{font-size:clamp(30px,7vw,44px);line-height:1.08;margin:15px 0}
+.searchbar{display:flex;gap:8px;margin:15px 0}
+.searchbar input{min-width:0;flex:1}
+.store-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.store-card{cursor:pointer}
+.store-symbol{height:105px;display:grid;place-items:center;background:#fff0f1;font-size:42px}
+.store-card .card-body{padding:12px}
+.store-card h3{font-size:16px}
+.store-card .btn{width:100%;padding:9px 5px;font-size:13px}
+.food-symbol{height:85px;width:85px;display:grid;place-items:center;background:#fff0f1;border-radius:12px;font-size:34px}
+.food-row{grid-template-columns:85px minmax(0,1fr) auto}
+.empty-state{text-align:center;background:#fff;border:1px dashed #d1d5db;padding:22px;border-radius:16px;color:#6b7280;grid-column:1/-1}
+.cart-line{display:flex;align-items:center;justify-content:space-between;gap:10px;border-bottom:1px solid #eee;padding:12px 0}
+.total-line{display:flex;justify-content:space-between;font-size:19px;font-weight:900;margin:18px 0}
+.status-note{padding:12px;border-radius:12px;background:#fff5e8;color:#75420b;margin:12px 0}
+.field{margin:12px 0}.field label{display:block;margin-bottom:6px}
+footer{text-align:center;padding:28px 10px;color:#6b7280}
+[hidden]{display:none!important}
+@media(min-width:650px){.store-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.store-symbol{height:135px}}
+</style>
 </head>
 <body>
 <header class="topbar">
   <div class="brand">MHAC <span>DELIVERY</span></div>
   <span class="pill">FOOD • PICKUP • DELIVERY</span>
 </header>
-
 <main class="container">
   <section class="welcome">
     <span class="pill">WELCOME TO MHAC</span>
     <h1>Masarap na pagkain,<br>delivered sa iyo.</h1>
-    <p>Pumili ng store, tingnan ang menu, at ihanda ang iyong order.</p>
+    <p>Pumili ng store, tingnan ang menu, at mag-order nang madali.</p>
   </section>
 
   <div class="searchbar">
-    <input class="input" id="search" placeholder="🔎 Search store or food..." aria-label="Search store or food">
+    <input class="input" id="search" placeholder="🔎 Search store or food..." aria-label="Search">
     <button class="btn red" id="cartToggle">🛒 Cart <span id="cartCount">0</span></button>
   </div>
-
-  <div id="notice" class="status-note">Binubuksan ang menu...</div>
+  <div id="notice" class="status-note">Nilo-load ang menu...</div>
 
   <section id="storeSection">
     <h2 class="section-title">Pumili ng Food Store</h2>
-    <div id="stores" class="store-grid">
-      <div class="empty-state">Nilo-load ang mga store...</div>
-    </div>
+    <div id="stores" class="store-grid"></div>
   </section>
 
   <section class="panel" id="menuPanel" hidden>
@@ -63,236 +62,146 @@
   </section>
 
   <section class="panel" id="cartPanel" hidden>
-    <div class="toolbar">
-      <h2>🛒 Iyong Cart</h2>
-      <button class="btn outline" id="closeCart">Isara</button>
-    </div>
+    <div class="toolbar"><h2>🛒 Iyong Cart</h2><button class="btn outline" id="closeCart">Isara</button></div>
     <div id="cartItems"></div>
     <div class="total-line"><span>Subtotal</span><span id="cartTotal">₱0.00</span></div>
-    <p class="muted">Ang delivery fee at service fee ay hindi pa kinakalkula sa preview na ito.</p>
+    <p class="muted">Hindi pa kasama ang delivery fee at service fee sa preview.</p>
     <button class="btn red" id="checkout">Mag-checkout</button>
-
     <div id="checkoutFields" hidden>
-      <div class="field"><label for="customerName">Pangalan</label><input class="input" id="customerName" autocomplete="name"></div>
-      <div class="field"><label for="customerPhone">Cellphone number</label><input class="input" id="customerPhone" type="tel" autocomplete="tel"></div>
+      <div class="field"><label for="customerName">Pangalan</label><input class="input" id="customerName"></div>
+      <div class="field"><label for="customerPhone">Cellphone number</label><input class="input" id="customerPhone" type="tel"></div>
       <div class="field"><label for="customerAddress">Delivery address / landmark</label><textarea class="input" id="customerAddress" rows="3"></textarea></div>
-      <div class="field"><label for="payment">Payment method</label>
-        <select class="input" id="payment"><option>Cash on Delivery</option><option>GCash</option></select>
-      </div>
+      <div class="field"><label for="payment">Payment method</label><select class="input" id="payment"><option>Cash on Delivery</option><option>GCash</option></select></div>
       <button class="btn red" id="sendOrder">Ihanda ang Order</button>
       <p id="orderResult" class="muted"></p>
     </div>
   </section>
-
   <footer>MHAC Delivery • New Website Preview</footer>
 </main>
 
 <script type="module">
-import { db, firebaseReady, money, esc } from "./app.js";
-import { doc, getDoc } from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
+import {db,firebaseReady,money} from "./app.js";
+import {doc,getDoc} from "https://www.gstatic.com/firebasejs/12.17.1/firebase-firestore.js";
 
-const $ = id => document.getElementById(id);
-let menu = {stores:[]};
-let activeStore = null;
-let cart = [];
+const $=id=>document.getElementById(id);
+let menu={stores:[]},activeStore=null,cart=[];
 
-function say(message) { $("notice").textContent = message; }
+const featured=[
+ {name:"Jollibee",symbol:"🍗"},
+ {name:"McDonald's",symbol:"🍔"},
+ {name:"Mang Inasal",symbol:"🍗"},
+ {name:"KFC",symbol:"🍗"},
+ {name:"Pizza",symbol:"🍕"},
+ {name:"Milk Tea & Drinks",symbol:"🧋"}
+];
 
-function storeName(store) {
-  return store.name || store.storeName || "Food Store";
+function say(message){$("notice").textContent=message}
+function storeName(s){return s.name||s.storeName||"Food Store"}
+function allFoods(s){return(s.categories||[]).flatMap(c=>c.foods||[])}
+
+function renderStores(filter=""){
+ const root=$("stores");root.innerHTML="";
+ const query=filter.toLowerCase().trim();
+ const actual=Array.isArray(menu.stores)?menu.stores:[];
+ const stores=actual.length?actual:featured;
+ const filtered=stores.filter(s=>
+  storeName(s).toLowerCase().includes(query)||
+  allFoods(s).some(f=>(f.name||"").toLowerCase().includes(query))
+ );
+ filtered.forEach(store=>{
+  const isFeatured=!!store.symbol;
+  const card=document.createElement("article");
+  card.className="card store-card";
+  const photo=document.createElement("div");
+  photo.className="store-symbol";
+  photo.textContent=isFeatured?store.symbol:"🍽️";
+  const body=document.createElement("div");body.className="card-body";
+  const title=document.createElement("h3");title.textContent=storeName(store);
+  const desc=document.createElement("p");desc.className="muted";
+  desc.textContent=isFeatured?"Menu coming soon":allFoods(store).length+" menu item(s)";
+  const button=document.createElement("button");button.className="btn red";
+  button.textContent=isFeatured?"Menu coming soon":"Tingnan ang Menu";
+  button.onclick=()=>isFeatured?say("Idagdag muna ang "+storeName(store)+" menu sa Admin at i-publish ito."):openStore(store);
+  body.append(title,desc,button);card.append(photo,body);
+  card.onclick=e=>{if(!isFeatured&&e.target!==button)openStore(store)};
+  root.append(card);
+ });
+ if(!filtered.length){
+  const empty=document.createElement("div");empty.className="empty-state";
+  empty.textContent="Walang tumugmang store o pagkain sa search.";
+  root.append(empty);
+ }
 }
 
-function allFoods(store) {
-  return (store.categories || []).flatMap(category =>
-    (category.foods || []).map(food => ({...food, categoryName:category.name || "Menu"}))
-  );
-}
-
-function makeCard(store) {
-  const card = document.createElement("article");
-  card.className = "card store-card";
-  const symbol = document.createElement("div");
-  symbol.className = "store-symbol";
-  symbol.textContent = "🍽️";
-  const body = document.createElement("div");
-  body.className = "card-body";
-  const title = document.createElement("h3");
-  title.textContent = storeName(store);
-  const desc = document.createElement("p");
-  desc.className = "muted";
-  desc.textContent = allFoods(store).length + " menu item(s)";
-  const btn = document.createElement("button");
-  btn.className = "btn red";
-  btn.textContent = "Tingnan ang Menu";
-  btn.onclick = () => openStore(store);
-  body.append(title, desc, btn);
-  card.append(symbol, body);
-  card.onclick = event => { if (event.target !== btn) openStore(store); };
-  return card;
-}
-
-function renderStores(filter = "") {
-  const root = $("stores");
-  root.innerHTML = "";
-  const query = filter.toLowerCase().trim();
-  const stores = (menu.stores || []).filter(store =>
-    storeName(store).toLowerCase().includes(query) ||
-    allFoods(store).some(food => (food.name || "").toLowerCase().includes(query))
-  );
-  stores.forEach(store => root.append(makeCard(store)));
-  if (!stores.length) {
-    const empty = document.createElement("div");
-    empty.className = "empty-state";
-    empty.textContent = menu.stores.length
-      ? "Walang tumugmang store o pagkain sa search."
-      : "Wala pang published menu. Idagdag muna ang stores at pagkain sa Admin.";
-    root.append(empty);
-  }
-}
-
-function openStore(store) {
-  activeStore = store;
-  $("storeSection").hidden = true;
-  $("menuPanel").hidden = false;
-  $("cartPanel").hidden = true;
-  $("storeTitle").textContent = storeName(store);
-  $("categories").innerHTML = "";
-  $("foods").innerHTML = "";
-
-  const categories = store.categories || [];
-  categories.forEach(category => {
-    const heading = document.createElement("h3");
-    heading.textContent = category.name || "Menu";
-    $("categories").append(heading);
-
-    (category.foods || []).forEach(food => {
-      const row = document.createElement("article");
-      row.className = "food-row";
-      const photo = document.createElement("div");
-      photo.className = "food-symbol";
-      photo.textContent = "🍱";
-
-      const info = document.createElement("div");
-      const name = document.createElement("h3");
-      name.textContent = food.name || "Food item";
-      const price = document.createElement("div");
-      price.className = "price";
-      price.textContent = money(food.price);
-      info.append(name, price);
-
-      const add = document.createElement("button");
-      add.className = "btn red";
-      add.textContent = "Add";
-      add.onclick = () => addToCart(store, category, food);
-      row.append(photo, info, add);
-      $("foods").append(row);
-    });
+function openStore(store){
+ activeStore=store;$("storeSection").hidden=true;$("menuPanel").hidden=false;$("cartPanel").hidden=true;
+ $("storeTitle").textContent=storeName(store);$("categories").innerHTML="";$("foods").innerHTML="";
+ (store.categories||[]).forEach(category=>{
+  const h=document.createElement("h3");h.textContent=category.name||"Menu";$("categories").append(h);
+  (category.foods||[]).forEach(food=>{
+   const row=document.createElement("article");row.className="food-row";
+   const image=document.createElement("div");image.className="food-symbol";image.textContent="🍱";
+   const info=document.createElement("div");const name=document.createElement("h3");name.textContent=food.name||"Food item";
+   const price=document.createElement("div");price.className="price";price.textContent=money(food.price);
+   info.append(name,price);
+   const add=document.createElement("button");add.className="btn red";add.textContent="Add";
+   add.onclick=()=>addToCart(store,category,food);
+   row.append(image,info,add);$("foods").append(row);
   });
-
-  if (!$("foods").children.length) {
-    $("foods").innerHTML = '<div class="empty-state">Wala pang food items sa store na ito.</div>';
-  }
+ });
+ if(!$("foods").children.length)$("foods").innerHTML='<div class="empty-state">Wala pang food items sa store na ito.</div>';
 }
 
-function addToCart(store, category, food) {
-  const key = [storeName(store), category.name, food.name].join("|");
-  const found = cart.find(item => item.key === key);
-  if (found) found.qty += 1;
-  else cart.push({
-    key, store:storeName(store), category:category.name || "Menu",
-    name:food.name || "Food item", price:Number(food.price) || 0, qty:1
-  });
-  renderCart();
-  say((food.name || "Food") + " naidagdag sa cart.");
+function addToCart(store,category,food){
+ const key=[storeName(store),category.name,food.name].join("|");
+ const found=cart.find(i=>i.key===key);
+ if(found)found.qty++;
+ else cart.push({key,store:storeName(store),name:food.name||"Food item",price:Number(food.price)||0,qty:1});
+ renderCart();say(food.name+" naidagdag sa cart.");
 }
 
-function renderCart() {
-  $("cartCount").textContent = cart.reduce((sum,item)=>sum+item.qty,0);
-  $("cartItems").innerHTML = "";
-  if (!cart.length) {
-    $("cartItems").innerHTML = '<div class="empty-state">Wala pang laman ang cart.</div>';
-  }
-
-  cart.forEach(item => {
-    const row = document.createElement("div");
-    row.className = "cart-line";
-    const detail = document.createElement("div");
-    const name = document.createElement("b");
-    name.textContent = item.name + " × " + item.qty;
-    const store = document.createElement("div");
-    store.className = "muted";
-    store.textContent = item.store;
-    const price = document.createElement("div");
-    price.textContent = money(item.price * item.qty);
-    detail.append(name, store, price);
-
-    const actions = document.createElement("div");
-    const minus = document.createElement("button");
-    minus.className = "btn outline";
-    minus.textContent = "−";
-    minus.onclick = () => { item.qty--; if(item.qty <= 0) cart=cart.filter(x=>x!==item); renderCart(); };
-    const plus = document.createElement("button");
-    plus.className = "btn outline";
-    plus.textContent = "+";
-    plus.onclick = () => { item.qty++; renderCart(); };
-    actions.append(minus, plus);
-    row.append(detail, actions);
-    $("cartItems").append(row);
-  });
-
-  $("cartTotal").textContent = money(cart.reduce((sum,item)=>sum+item.price*item.qty,0));
+function renderCart(){
+ $("cartCount").textContent=cart.reduce((s,i)=>s+i.qty,0);$("cartItems").innerHTML="";
+ if(!cart.length)$("cartItems").innerHTML='<div class="empty-state">Wala pang laman ang cart.</div>';
+ cart.forEach(item=>{
+  const row=document.createElement("div");row.className="cart-line";
+  const detail=document.createElement("div"),name=document.createElement("b"),store=document.createElement("div"),price=document.createElement("div");
+  name.textContent=item.name+" × "+item.qty;store.className="muted";store.textContent=item.store;price.textContent=money(item.price*item.qty);
+  detail.append(name,store,price);
+  const controls=document.createElement("div");
+  const minus=document.createElement("button");minus.className="btn outline";minus.textContent="−";
+  minus.onclick=()=>{item.qty--;if(item.qty<1)cart=cart.filter(x=>x!==item);renderCart()};
+  const plus=document.createElement("button");plus.className="btn outline";plus.textContent="+";
+  plus.onclick=()=>{item.qty++;renderCart()};
+  controls.append(minus,plus);row.append(detail,controls);$("cartItems").append(row);
+ });
+ $("cartTotal").textContent=money(cart.reduce((s,i)=>s+i.price*i.qty,0));
 }
 
-$("backStores").onclick = () => {
-  $("menuPanel").hidden = true;
-  $("storeSection").hidden = false;
-};
-$("cartToggle").onclick = () => {
-  $("menuPanel").hidden = true;
-  $("storeSection").hidden = true;
-  $("cartPanel").hidden = false;
-};
-$("closeCart").onclick = () => {
-  $("cartPanel").hidden = true;
-  if(activeStore) $("menuPanel").hidden = false;
-  else $("storeSection").hidden = false;
-};
-$("checkout").onclick = () => {
-  if (!cart.length) { say("Magdagdag muna ng pagkain sa cart."); return; }
-  $("checkoutFields").hidden = false;
-};
-$("sendOrder").onclick = () => {
-  $("orderResult").textContent =
-    "Preview mode lamang: hindi pa naipapadala ang order. Ikonekta at i-secure muna ang bagong Firebase bago tumanggap ng tunay na orders.";
-};
-$("search").oninput = event => {
-  $("storeSection").hidden = false;
-  $("menuPanel").hidden = true;
-  $("cartPanel").hidden = true;
-  renderStores(event.target.value);
-};
+$("backStores").onclick=()=>{$("menuPanel").hidden=true;$("storeSection").hidden=false};
+$("cartToggle").onclick=()=>{$("menuPanel").hidden=true;$("storeSection").hidden=true;$("cartPanel").hidden=false};
+$("closeCart").onclick=()=>{$("cartPanel").hidden=true;if(activeStore)$("menuPanel").hidden=false;else $("storeSection").hidden=false};
+$("checkout").onclick=()=>{if(!cart.length){say("Magdagdag muna ng pagkain sa cart.");return}$("checkoutFields").hidden=false};
+$("sendOrder").onclick=()=>{$("orderResult").textContent="Preview lamang. Hindi pa nagpapadala ng totoong order. I-set up muna ang secure Firebase order system."};
+$("search").oninput=e=>{$("storeSection").hidden=false;$("menuPanel").hidden=true;$("cartPanel").hidden=true;renderStores(e.target.value)};
 
-async function loadMenu() {
-  if (!firebaseReady || !db) {
-    say("Preview mode: ikonekta muna ang bagong Firebase project para lumabas ang published menu.");
-    renderStores();
-    return;
-  }
-  try {
-    const snapshot = await getDoc(doc(db, "settings", "menu"));
-    menu = snapshot.exists() ? snapshot.data() : {stores:[]};
-    if (!Array.isArray(menu.stores)) menu.stores = [];
-    say(snapshot.exists() ? "Menu loaded." : "Wala pang published menu sa bagong Firebase.");
-    renderStores();
-  } catch(error) {
-    say("Hindi ma-load ang menu. Suriin ang Firebase config at Firestore rules.");
-    renderStores();
-    console.error(error);
-  }
+async function loadMenu(){
+ if(!firebaseReady||!db){
+  say("Preview mode: nakikita na ang store shortcuts. Ikonekta ang bagong Firebase para sa totoong menu.");
+  renderStores();return;
+ }
+ try{
+  const snap=await getDoc(doc(db,"settings","menu"));
+  menu=snap.exists()?snap.data():{stores:[]};
+  if(!Array.isArray(menu.stores))menu.stores=[];
+  say(snap.exists()?"Menu loaded.":"Wala pang published menu. I-set up muna sa Admin.");
+  renderStores();
+ }catch(e){
+  say("Hindi ma-load ang menu. Suriin ang Firebase config at Firestore rules.");
+  renderStores();console.error(e);
+ }
 }
-
-renderCart();
-loadMenu();
+renderCart();loadMenu();
 </script>
 </body>
 </html>
