@@ -324,26 +324,7 @@ button.danger,.danger{
   background:#fff!important;
 }
 
-\n
-/* FINAL MOBILE UI TUNE: independent screens, no extra collapse controls outside Store/Menu Manager */
-#app:not(.hidden)>.card[data-mhac-screen="riders"] .adminSectionToggle,
-#app:not(.hidden)>.card[data-mhac-screen="gcash"] .adminSectionToggle,
-#app:not(.hidden)>.card[data-mhac-screen="business"] .adminSectionToggle,
-#app:not(.hidden)>.card[data-mhac-screen="earnings"] .adminSectionToggle,
-#app:not(.hidden)>.card[data-mhac-screen="account"] .adminSectionToggle,
-#app:not(.hidden)>.card[data-mhac-screen="orders"] .adminSectionToggle {display:none!important}
-#app:not(.hidden)>.card[data-mhac-screen]:not([data-mhac-screen="menu"]) .adminSectionArrow{display:none!important}
-#app:not(.hidden)>.card[data-mhac-screen] {font-family:Arial,Helvetica,sans-serif!important;font-size:15px!important;line-height:1.45!important}
-#app:not(.hidden)>.card[data-mhac-screen] h2,
-#app:not(.hidden)>.card[data-mhac-screen] h3 {font-family:Arial,Helvetica,sans-serif!important;letter-spacing:0!important;line-height:1.25!important;overflow-wrap:anywhere}
-.mhacScreenTop{align-items:center!important;gap:12px!important;padding-bottom:12px!important;margin-bottom:14px!important}
-.mhacScreenHeading b{font-size:21px!important;font-weight:800!important;line-height:1.22!important;letter-spacing:0!important}
-.mhacScreenHeading small{font-size:13px!important;line-height:1.35!important;margin-top:4px!important}
-#app:not(.hidden)>.card[data-mhac-screen]:not([data-mhac-screen="menu"]) .card,
-#app:not(.hidden)>.card[data-mhac-screen]:not([data-mhac-screen="menu"]) .settingsCard{margin-top:10px!important}
-@media(max-width:600px){.mhacScreenHeading b{font-size:20px!important}.mhacScreenHeading small{font-size:13px!important}}
-
-</style><style id="new-order-breakdown-css">
+\n</style><style id="new-order-breakdown-css">
 .newOB-drawer{border:4px solid #222!important;border-radius:16px!important;background:#fff!important;padding:16px 12px 12px!important;box-sizing:border-box!important;color:#111!important}
 .newOB-customer{padding:0 0 10px!important;border-bottom:1px solid #e5e5e5!important;font-size:14px!important;line-height:1.55!important}
 .newOB-orderNo,.newOB-statusName{font-size:17px!important;font-weight:900!important}
@@ -4394,213 +4375,85 @@ setTimeout(function(){
 })();
 </script>
 
-<style id="MHAC_ADMIN_NATIVE_SCREEN_UI">
-#app:not(.hidden){display:block!important;max-width:760px!important;margin:0 auto!important;padding:8px!important}
-#app:not(.hidden)>.card{width:100%!important;max-width:100%!important;min-width:0!important;margin:8px 0!important;box-sizing:border-box!important}
+<style id="MHAC_ADMIN_NATIVE_SCREEN_UI_FINAL">
+:root{--sky:#65d9ef;--sky2:#39c6e8;--sky3:#8be7f5;--ink:#071827;--line:#22b8dc}
+html,body{background:var(--sky)!important;color:var(--ink)!important;min-height:100%;}
+body{background:var(--sky)!important}
+#app:not(.hidden){display:block!important;max-width:760px!important;margin:0 auto!important;padding:8px!important;background:var(--sky)!important;min-height:calc(100vh - 16px)!important;box-sizing:border-box!important}
+#app:not(.hidden)>.card{width:100%!important;max-width:100%!important;min-width:0!important;margin:8px 0!important;box-sizing:border-box!important;background:var(--sky)!important;color:var(--ink)!important;border:1px solid rgba(0,70,100,.15)!important;box-shadow:none!important;border-radius:15px!important}
 #app:not(.hidden)>.card.mhacScreenHidden{display:none!important}
-#app:not(.hidden)>.card.mhacScreenActive{display:block!important;animation:mhacScreenIn .18s ease-out both}
+#app:not(.hidden)>.card.mhacScreenActive{display:block!important;animation:mhacScreenIn .16s ease-out both}
 #app:not(.hidden)>.mhacHomeScreen{display:none!important}
-#app:not(.hidden)>.mhacHomeScreen.mhacScreenActive{display:none!important}
-.mhacScreenTop{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:3px 0 11px;border-bottom:2px solid #e21d25}
-.mhacBackBtn{flex:0 0 44px!important;width:44px!important;height:44px!important;min-height:44px!important;margin:0!important;border-radius:13px!important;font-size:23px!important;padding:0!important}
+#app:not(.hidden)>.mhacHomeScreen.mhacScreenActive{display:block!important}
+.mhacHomeBrand{padding:16px 10px!important;border-radius:0!important;background:var(--sky)!important;color:var(--ink)!important;text-align:center!important;margin:0 0 8px!important;border:0!important}
+.mhacHomeBrand b{display:block;font-size:27px;letter-spacing:.2px}
+.mhacHomeBrand span{display:block;font-size:12px;color:var(--ink)!important;margin-top:5px}
+.mhacHomeGrid{display:grid;grid-template-columns:1fr!important;gap:7px!important}
+.mhacHomeTile{display:flex!important;flex-direction:row!important;align-items:center!important;justify-content:flex-start!important;gap:12px!important;min-height:78px!important;margin:0!important;padding:10px 12px!important;border:1px solid rgba(0,75,100,.18)!important;border-radius:14px!important;background:var(--sky)!important;color:var(--ink)!important;box-shadow:none!important;text-align:left!important;white-space:normal!important}
+.mhacHomeTile .mhacTileIcon{display:flex;align-items:center;justify-content:center;flex:0 0 54px;width:54px;height:54px;border-radius:14px;background:var(--sky2)!important;color:var(--ink)!important;font-size:27px}
+.mhacHomeTile b{font-size:16px;line-height:1.2;color:var(--ink)!important}
+.mhacHomeTile small{display:block;font-size:12px;color:var(--ink)!important;line-height:1.25;margin-top:3px}
+.mhacHomeTile.mhacWide{grid-column:auto;min-height:78px;flex-direction:row!important;align-items:center!important}
+.mhacSwipeHint{text-align:center;color:var(--ink)!important;font-size:12px;padding:12px 0 4px}
+.mhacScreenTop{display:flex;align-items:center;gap:10px;margin:0 0 12px;padding:3px 0 11px;border-bottom:1px solid rgba(0,70,100,.2)}
 .mhacScreenHeading{min-width:0;flex:1}
-.mhacScreenHeading b{display:block;font-size:20px;line-height:1.2}
-.mhacScreenHeading small{display:block;color:#666;font-size:12px;margin-top:3px}
-.mhacHomeBrand{padding:15px;border-radius:18px;background:linear-gradient(135deg,#171717,#4a0909);color:#fff;margin-bottom:12px}
-.mhacHomeBrand b{display:block;font-size:23px;letter-spacing:.3px}
-.mhacHomeBrand span{display:block;font-size:12px;color:#f4c8c8;margin-top:5px}
-.mhacHomeGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.mhacHomeTile{display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:8px!important;min-height:112px!important;margin:0!important;padding:14px!important;border:1px solid #dedede!important;border-radius:16px!important;background:#fff!important;box-shadow:0 2px 7px #0000000a!important;text-align:left!important;white-space:normal!important}
-.mhacHomeTile .mhacTileIcon{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:#fff0f0;font-size:22px}
-.mhacHomeTile b{font-size:14px;line-height:1.2}
-.mhacHomeTile small{font-size:11px;color:#666;line-height:1.25}
-.mhacHomeTile.mhacWide{grid-column:1/-1;min-height:82px;flex-direction:row!important;align-items:center!important}
-.mhacHomeTile.mhacWide .mhacTileText{flex:1}
-.mhacSwipeHint{text-align:center;color:#777;font-size:11px;padding:10px 0 2px}
-@keyframes mhacScreenIn{from{opacity:.65;transform:translateX(8px)}to{opacity:1;transform:translateX(0)}}
-@media(max-width:380px){.mhacHomeGrid{gap:7px}.mhacHomeTile{padding:10px;min-height:104px}.mhacHomeTile b{font-size:13px}.mhacScreenHeading b{font-size:18px}}
+.mhacScreenHeading b{display:block;font-size:22px;line-height:1.2;color:var(--ink)!important}
+.mhacScreenHeading small{display:block;color:var(--ink)!important;font-size:13px;margin-top:4px}
+.mhacBackBtn{display:none!important}
+/* Keep every content panel and control in the sky-blue palette. */
+#app .card,#app .gcSettings,#app .metric,#app .riderRow,#app .storeCard,#app .categoryCard,#app .foodCard,#app .orderCard,#app .chatPanel,#app .chatMessages,#app .directStoreEditor,#app .directCategoryCard{background:var(--sky)!important;color:var(--ink)!important;box-shadow:none!important}
+#app input:not([type=file]),#app textarea,#app select{background:var(--sky3)!important;color:var(--ink)!important;border:2px solid var(--line)!important;border-radius:13px!important;box-shadow:none!important}
+#app input[type=file]{background:var(--sky3)!important;color:var(--ink)!important;border:2px solid var(--line)!important;border-radius:13px!important;max-width:100%!important}
+#app button{background:var(--sky2)!important;color:var(--ink)!important;border-color:rgba(0,70,100,.22)!important;box-shadow:none!important}
+#app .metric{border:1px solid rgba(0,70,100,.18)!important;border-radius:14px!important}
+#app .adminSectionToggle{background:var(--sky)!important;color:var(--ink)!important;border-color:rgba(0,70,100,.3)!important}
+#app .mhacHomeScreen{background:var(--sky)!important;border:0!important}
+@keyframes mhacScreenIn{from{opacity:.7;transform:translateX(7px)}to{opacity:1;transform:translateX(0)}}
+@media(max-width:380px){.mhacHomeTile{padding:9px;min-height:72px}.mhacHomeTile b{font-size:14px}.mhacScreenHeading b{font-size:19px}}
 </style>
-<script id="MHAC_ADMIN_SWIPE_SCREENS_UI">
+<script id="MHAC_ADMIN_SWIPE_SCREENS_UI_FINAL">
 (function(){
-  function initMHACScreens(){
-    var app=document.getElementById('app');
-    if(!app || app.dataset.mhacScreensReady==='1') return;
-    var cards=Array.prototype.filter.call(app.children,function(el){return el.classList && el.classList.contains('card');});
-    if(cards.length<7) return;
-    app.dataset.mhacScreensReady='1';
-    var sections=[
-      {key:'account',title:'ADMIN ACCOUNT',sub:'Account and notification settings',icon:'👤',desc:'Account details, logout, alerts',card:cards[0]},
-      {key:'business',title:'BUSINESS HOURS',sub:'Opening hours and day off',icon:'🕒',desc:'Open time, close time, closed day',card:cards[3]},
-      {key:'earnings',title:'DELIVERY & EARNINGS',sub:'Delivery totals and accounting',icon:'📊',desc:'Earnings and rider accounting',card:cards[1]},
-      {key:'riders',title:'RIDERS',sub:'Rider approval and management',icon:'🏍️',desc:'Review riders and approvals',card:cards[5]},
-      {key:'gcash',title:'GCASH PAYMENT',sub:'Customer payment settings',icon:'💳',desc:'GCash number and QR settings',card:cards[2]},
-      {key:'menu',title:'STORE / MENU MANAGER',sub:'Stores, categories and food editor',icon:'🏪',desc:'Manage stores, food and choices',card:cards[6]},
-      {key:'orders',title:'INCOMING ORDERS',sub:'Order handling and rider assignment',icon:'📦',desc:'View orders, chat and assign riders',card:cards[4]}
-    ];
-    var home=document.createElement('section');
-    home.className='card mhacHomeScreen';
-    home.innerHTML='<div class="mhacHomeBrand"><b>MHAC DELIVERY</b><span>ADMIN CONTROL CENTER · FAST • SAFE • ON TIME</span></div><div class="mhacHomeGrid"></div><div class="mhacSwipeHint">Piliin ang section o mag-swipe pakaliwa / pakanan</div>';
-    app.insertBefore(home,app.firstChild);
-    var grid=home.querySelector('.mhacHomeGrid');
-    sections.forEach(function(sec){
-      var b=document.createElement('button');
-      b.type='button'; b.className='mhacHomeTile'+(sec.key==='orders'?' mhacWide':'');
-      b.innerHTML='<span class="mhacTileIcon">'+sec.icon+'</span><span class="mhacTileText"><b>'+sec.title+'</b><small>'+sec.desc+'</small></span>';
-      b.addEventListener('click',function(){showScreen(sec.key,1);});
-      grid.appendChild(b);
-      var card=sec.card;
-      card.dataset.mhacScreen=sec.key;
-      var oldHeading=card.querySelector(':scope > h2, :scope > .adminSectionToggle');
-      if(oldHeading && !oldHeading.dataset.mhacHeadingDecorated){
-        oldHeading.dataset.mhacHeadingDecorated='1';
-        var wrap=document.createElement('div'); wrap.className='mhacScreenTop';
-        var back=document.createElement('button'); back.type='button'; back.className='mhacBackBtn'; back.textContent='‹'; back.setAttribute('aria-label','Back to dashboard');
-        back.addEventListener('click',function(){if(current>0)showScreen(order[current-1],-1);});
-        var head=document.createElement('div'); head.className='mhacScreenHeading';
-        var title=document.createElement('b'); title.textContent=sec.title;
-        var sub=document.createElement('small'); sub.textContent=sec.sub;
-        head.appendChild(title);head.appendChild(sub);wrap.appendChild(back);wrap.appendChild(head);
-        oldHeading.parentNode.insertBefore(wrap,oldHeading);
-        oldHeading.style.display='none';
-      }
-    });
-    var order=sections.map(function(s){return s.key;});
-    var current=0;
-    function showScreen(key,direction){
-      var idx=order.indexOf(key);if(idx<0)return;current=idx;
-      home.classList.toggle('mhacScreenActive',key==='home');
-      sections.forEach(function(sec){
-        sec.card.classList.toggle('mhacScreenActive',sec.key===key);
-        sec.card.classList.toggle('mhacScreenHidden',sec.key!==key);
-      });
-      app.dataset.mhacCurrentScreen=key;
-      try{window.scrollTo({top:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}
-    }
-    var startX=0,startY=0;
-    app.addEventListener('touchstart',function(e){
-      if(!e.touches||e.touches.length!==1)return;
-      startX=e.touches[0].clientX;startY=e.touches[0].clientY;
-    },{passive:true});
-    app.addEventListener('touchend',function(e){
-      if(!e.changedTouches||e.changedTouches.length!==1)return;
-      var dx=e.changedTouches[0].clientX-startX,dy=e.changedTouches[0].clientY-startY;
-      if(Math.abs(dx)<85||Math.abs(dx)<Math.abs(dy)*1.25)return;
-      var target=e.target;
-      if(target&&target.closest&&target.closest('input,textarea,select,button,[contenteditable="true"],.storeCategories,.directFoodList,.chatPanel,.chatMessages'))return;
-      var next=Math.max(0,Math.min(order.length-1,current+(dx<0?1:-1)));
-      if(next!==current)showScreen(order[next],dx<0?1:-1);
-    },{passive:true});
-    // Open the dashboard first after login becomes visible; original login/Firebase logic remains untouched.
-    showScreen('account',0);
-    var observer=new MutationObserver(function(){
-      if(!app.classList.contains('hidden') && !app.dataset.mhacUserNavigated && app.dataset.mhacCurrentScreen!=='account') showScreen('account',0);
-    });
-    observer.observe(app,{attributes:true,attributeFilter:['class']});
-    app.addEventListener('click',function(){app.dataset.mhacUserNavigated='1';},{capture:true,once:true});
+ function initMHACScreens(){
+  var app=document.getElementById('app');if(!app||app.dataset.mhacScreensReady==='1')return;
+  var cards=Array.prototype.filter.call(app.children,function(el){return el.classList&&el.classList.contains('card')&&!el.classList.contains('mhacHomeScreen');});
+  if(cards.length<7)return;app.dataset.mhacScreensReady='1';
+  var account=cards[0],earnings=cards[1],gcash=cards[2],business=cards[3],orders=cards[4],riders=cards[5],menu=cards[6];
+  var sections=[
+   {key:'orders',title:'INCOMING ORDERS',sub:'Order handling and rider assignment',icon:'🛒',desc:'View orders, chat and assign riders',card:orders},
+   {key:'menu',title:'STORE / MENU MANAGER',sub:'Stores, categories and food editor',icon:'🏪',desc:'Manage stores, categories and foods',card:menu},
+   {key:'riders',title:'RIDERS',sub:'Rider approval and management',icon:'🏍️',desc:'Review riders and approvals',card:riders},
+   {key:'earnings',title:'DELIVERY & EARNINGS',sub:'Delivery totals and accounting',icon:'📊',desc:'Delivery totals and rider accounting',card:earnings},
+   {key:'gcash',title:'GCASH PAYMENT',sub:'Customer payment settings',icon:'💳',desc:'Customer payment settings',card:gcash}
+  ];
+  var home=document.createElement('section');home.className='card mhacHomeScreen';
+  home.innerHTML='<div class="mhacHomeBrand"><b>MHAC DELIVERY</b><span>ADMIN APP · ORDERS · MENU PUBLISH · RIDER ASSIGNMENT · ACCOUNTING</span></div><div class="mhacHomeGrid"></div><div class="mhacSwipeHint">Swipe left / right to change screen</div>';
+  app.insertBefore(home,app.firstChild);var grid=home.querySelector('.mhacHomeGrid');
+  sections.forEach(function(sec){
+   var b=document.createElement('button');b.type='button';b.className='mhacHomeTile'+(sec.key==='orders'?' mhacWide':'');
+   b.innerHTML='<span class="mhacTileIcon">'+sec.icon+'</span><span class="mhacTileText"><b>'+sec.title+'</b><small>'+sec.desc+'</small></span>';
+   b.addEventListener('click',function(){showScreen(sec.key);});grid.appendChild(b);
+   sec.card.dataset.mhacScreen=sec.key;
+   var old=sec.card.querySelector(':scope > h2, :scope > .adminSectionToggle');
+   if(old&&!old.dataset.mhacHeadingDecorated){old.dataset.mhacHeadingDecorated='1';var wrap=document.createElement('div');wrap.className='mhacScreenTop';var head=document.createElement('div');head.className='mhacScreenHeading';var title=document.createElement('b');title.textContent=sec.title;var sub=document.createElement('small');sub.textContent=sec.sub;head.appendChild(title);head.appendChild(sub);wrap.appendChild(head);old.parentNode.insertBefore(wrap,old);old.style.display='none';}
+  });
+  // Account and business hours remain together at the top of the home screen.
+  account.classList.add('mhacHomeAlways');business.classList.add('mhacHomeAlways');
+  var order=['home'].concat(sections.map(function(x){return x.key;})),current=0;
+  function showScreen(key){var idx=order.indexOf(key);if(idx<0)return;current=idx;var isHome=key==='home';home.classList.toggle('mhacScreenActive',isHome);
+   account.classList.toggle('mhacScreenHidden',!isHome);business.classList.toggle('mhacScreenHidden',!isHome);
+   sections.forEach(function(sec){sec.card.classList.toggle('mhacScreenActive',sec.key===key);sec.card.classList.toggle('mhacScreenHidden',sec.key!==key);});
+   app.dataset.mhacCurrentScreen=key;try{window.scrollTo({top:0,behavior:'instant'});}catch(e){window.scrollTo(0,0);}
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMHACScreens);
-  else initMHACScreens();
+  // No back arrows; swipe gestures are the navigation method.
+  var sx=0,sy=0;app.addEventListener('touchstart',function(e){if(e.touches&&e.touches.length===1){sx=e.touches[0].clientX;sy=e.touches[0].clientY;}},{passive:true});
+  app.addEventListener('touchend',function(e){if(!e.changedTouches||e.changedTouches.length!==1)return;var dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;if(Math.abs(dx)<75||Math.abs(dx)<Math.abs(dy)*1.25)return;var t=e.target;if(t&&t.closest&&t.closest('input,textarea,select,button,[contenteditable="true"],.storeCategories,.directFoodList,.chatPanel,.chatMessages'))return;var next=Math.max(0,Math.min(order.length-1,current+(dx<0?1:-1)));if(next!==current)showScreen(order[next]);},{passive:true});
+  showScreen('home');
+  var observer=new MutationObserver(function(){if(!app.classList.contains('hidden')&&!app.dataset.mhacUserNavigated&&app.dataset.mhacCurrentScreen!=='home')showScreen('home');});observer.observe(app,{attributes:true,attributeFilter:['class']});
+  app.addEventListener('click',function(){app.dataset.mhacUserNavigated='1';},{capture:true,once:true});
+ }
+ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initMHACScreens);else initMHACScreens();
 })();
 </script>
-
-
-<style id="MHAC_FULL_SCREEN_PAGE_DESIGN">
-/* Full-screen page design: roomy, colorful background, readable typography */
-:root{--mhac-ink:#171923;--mhac-red:#b91c2c;--mhac-bg:#eef2f8;--mhac-card:#ffffff;}
-html,body{min-height:100%;background:linear-gradient(145deg,#e8edf7 0%,#f7f3f1 48%,#fbe9e8 100%)!important;color:var(--mhac-ink)!important;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif!important}
-#app{max-width:100%!important;width:100%!important;padding:clamp(12px,3vw,26px)!important;box-sizing:border-box!important;background:transparent!important}
-#app:not(.hidden)>.card.mhacScreenActive{min-height:calc(100dvh - 190px)!important;padding:clamp(20px,4vw,34px)!important;margin:0 auto 16px!important;border-radius:24px!important;background:rgba(255,255,255,.97)!important;border:1px solid #d9deea!important;box-shadow:0 12px 34px rgba(25,35,60,.10)!important;box-sizing:border-box!important}
-.mhacHomeScreen{min-height:calc(100dvh - 190px)!important;padding:clamp(20px,4vw,34px)!important;border-radius:24px!important;background:rgba(255,255,255,.96)!important;border:1px solid #d9deea!important;box-shadow:0 12px 34px rgba(25,35,60,.10)!important;box-sizing:border-box!important}
-.mhacHomeHero{padding:clamp(24px,5vw,42px)!important;min-height:140px!important;display:flex!important;flex-direction:column!important;justify-content:center!important;border-radius:24px!important;background:linear-gradient(125deg,#20232d,#7f1724 58%,#b91c2c)!important;color:#fff!important;margin-bottom:22px!important}
-.mhacHomeHero b{font-size:clamp(28px,5vw,38px)!important;line-height:1.15!important;letter-spacing:.2px!important}
-.mhacHomeHero span{font-size:clamp(14px,2.4vw,18px)!important;line-height:1.5!important;margin-top:10px!important;color:#ffe5e8!important}
-.mhacHomeGrid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:clamp(12px,2.5vw,20px)!important}
-.mhacHomeTile{min-height:clamp(155px,22vh,220px)!important;padding:clamp(18px,3vw,28px)!important;border-radius:22px!important;border:1px solid #d7dce7!important;background:linear-gradient(155deg,#fff,#f5f7fb)!important;box-shadow:0 6px 18px rgba(20,30,50,.07)!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:flex-start!important;gap:12px!important;text-align:left!important;color:#171923!important;white-space:normal!important}
-.mhacTileIcon{width:clamp(52px,8vw,68px)!important;height:clamp(52px,8vw,68px)!important;min-width:clamp(52px,8vw,68px)!important;border-radius:18px!important;background:#fff0f1!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:clamp(28px,4vw,38px)!important}
-.mhacTileText{display:block!important;min-width:0!important}
-.mhacTileText b{display:block!important;font-size:clamp(18px,2.8vw,24px)!important;line-height:1.25!important;letter-spacing:0!important;margin:0 0 7px!important;overflow-wrap:anywhere!important}
-.mhacTileText small{display:block!important;font-size:clamp(14px,2.1vw,17px)!important;line-height:1.45!important;color:#626979!important;font-weight:600!important}
-.mhacHomeTile.mhacWide{grid-column:1/-1!important;min-height:135px!important;flex-direction:row!important;align-items:center!important}
-.mhacSwipeHint{font-size:14px!important;color:#697184!important;margin-top:24px!important;text-align:center!important}
-.mhacScreenTop{gap:16px!important;padding:0 0 18px!important;margin:0 0 22px!important;border-bottom:3px solid #c61f32!important}
-.mhacBackBtn{width:58px!important;height:58px!important;min-width:58px!important;min-height:58px!important;border-radius:18px!important;font-size:34px!important;background:#fff!important;border:2px solid #222!important;color:#111!important;box-shadow:0 3px 10px #0000000b!important}
-.mhacScreenHeading b{font-size:clamp(25px,4vw,32px)!important;line-height:1.2!important;letter-spacing:0!important}
-.mhacScreenHeading small{font-size:clamp(15px,2.3vw,18px)!important;line-height:1.4!important;margin-top:5px!important;color:#687080!important}
-/* Remove redundant collapse headings everywhere except the Store/Menu Manager screen. */
-#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionToggle,
-#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionBody{display:block!important}
-#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionToggle{display:none!important}
-#app>.card[data-mhac-screen]:not([data-mhac-screen="menu"])>.adminSectionBody.hidden{display:block!important}
-#app>.card[data-mhac-screen="menu"]>.adminSectionToggle{display:flex!important}
-#app>.card[data-mhac-screen="menu"]>.adminSectionBody.hidden{display:none!important}
-/* Larger, less crowded controls and text on individual pages */
-#app:not(.hidden)>.card.mhacScreenActive input:not([type="checkbox"]):not([type="radio"]),#app:not(.hidden)>.card.mhacScreenActive select,#app:not(.hidden)>.card.mhacScreenActive textarea{font-size:17px!important;min-height:48px!important;border-radius:13px!important}
-#app:not(.hidden)>.card.mhacScreenActive button{border-radius:14px!important;font-weight:750!important}
-#app:not(.hidden)>.card.mhacScreenActive p.status{font-size:16px!important;line-height:1.55!important}
-@media(max-width:520px){#app{padding:10px!important}.mhacHomeScreen{padding:14px!important}.mhacHomeGrid{gap:10px!important}.mhacHomeTile{padding:14px!important;min-height:165px!important}.mhacTileText b{font-size:17px!important}.mhacTileText small{font-size:13px!important}.mhacHomeTile.mhacWide{min-height:125px!important}#app:not(.hidden)>.card.mhacScreenActive{padding:16px!important;min-height:calc(100dvh - 175px)!important}.mhacBackBtn{width:50px!important;height:50px!important;min-width:50px!important;min-height:50px!important}}
-</style>
-
-
-<style id="mhac-black-red-theme-v1">
-/* MHAC black full-screen theme with red panels; UI-only override. */
-html, body { background:#080808!important; color:#f8fafc!important; }
-body { font-family:Arial,Helvetica,sans-serif!important; font-size:17px!important; line-height:1.5!important; }
-#app:not(.hidden) { background:#080808!important; color:#f8fafc!important; }
-#app:not(.hidden)>.card.mhacScreenActive {
-  background:#101010!important; color:#f8fafc!important;
-  border:2px solid #dc2626!important; border-radius:26px!important;
-  box-shadow:0 10px 28px rgba(0,0,0,.38)!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop { border-bottom:4px solid #ef4444!important; }
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2,
-#app:not(.hidden)>.card.mhacScreenActive h1,
-#app:not(.hidden)>.card.mhacScreenActive h2,
-#app:not(.hidden)>.card.mhacScreenActive h3,
-#app:not(.hidden)>.card.mhacScreenActive label { color:#fff!important; }
-#app:not(.hidden)>.card.mhacScreenActive p,
-#app:not(.hidden)>.card.mhacScreenActive small,
-#app:not(.hidden)>.card.mhacScreenActive .muted,
-#app:not(.hidden)>.card.mhacScreenActive .hint { color:#e5e7eb!important; }
-/* Main controls and panels use dark text on bright red/light surfaces for contrast. */
-#app:not(.hidden)>.card.mhacScreenActive .settingsCard,
-#app:not(.hidden)>.card.mhacScreenActive .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive .storeCard,
-#app:not(.hidden)>.card.mhacScreenActive .categoryCard,
-#app:not(.hidden)>.card.mhacScreenActive .foodCard,
-#app:not(.hidden)>.card.mhacScreenActive .orderCard,
-#app:not(.hidden)>.card.mhacScreenActive .riderCard,
-#app:not(.hidden)>.card.mhacScreenActive .chatBox,
-#app:not(.hidden)>.card.mhacScreenActive .settingsBox {
-  background:#b91c1c!important; color:#fff!important;
-  border:1px solid #ef4444!important; border-radius:18px!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive input,
-#app:not(.hidden)>.card.mhacScreenActive select,
-#app:not(.hidden)>.card.mhacScreenActive textarea {
-  background:#fff!important; color:#111!important; border:2px solid #ef4444!important;
-  font-size:17px!important; line-height:1.4!important; min-height:48px!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive button {
-  font-size:16px!important; font-weight:800!important; line-height:1.3!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive button:not(.danger):not([class*="delete"]):not([class*="remove"]) {
-  border-color:#fca5a5!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenBack,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop button { background:#dc2626!important; color:#fff!important; }
-/* Menu subpanels remain distinct but keep the requested red theme. */
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .storeCard { background:#991b1b!important; }
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .categoryCard { background:#b91c1c!important; }
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodCard { background:#7f1d1d!important; }
-@media (max-width:600px) {
- body { font-size:17px!important; }
- #app:not(.hidden)>.card.mhacScreenActive { padding:18px!important; margin:12px!important; min-height:calc(100vh - 340px)!important; }
- #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
- #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2 { font-size:clamp(24px,6vw,32px)!important; line-height:1.2!important; }
-}
-</style>
 
 </body></html><style id="MHAC_FINAL_COMPACT_READABLE_20260831">
 /* FINAL COMPACT + READABLE — requested mobile layout */
@@ -4660,263 +4513,11 @@ body{font-size:15px!important;line-height:1.35!important}
 /* V4.1.76 PRESERVE MENU MANAGER — ORDER DRAWER BORDER ONLY */
 .orderDetailPanel{border:4px solid #222 !important;}
 </style>
-<style id="MHAC_SECTION_PANEL_COLORS_V1">
-/* Each section is its own screen; use a distinct soft background and cleaner inner panels. */
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="account"]{background:linear-gradient(145deg,#fff7ed 0%,#ffffff 62%,#ffedd5 100%)!important;border-color:#fed7aa!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="hours"]{background:linear-gradient(145deg,#eff6ff 0%,#ffffff 62%,#dbeafe 100%)!important;border-color:#bfdbfe!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="earnings"]{background:linear-gradient(145deg,#ecfdf5 0%,#ffffff 62%,#d1fae5 100%)!important;border-color:#a7f3d0!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="riders"]{background:linear-gradient(145deg,#f5f3ff 0%,#ffffff 62%,#ede9fe 100%)!important;border-color:#ddd6fe!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="gcash"]{background:linear-gradient(145deg,#ecfeff 0%,#ffffff 62%,#cffafe 100%)!important;border-color:#a5f3fc!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"]{background:linear-gradient(145deg,#fff1f2 0%,#ffffff 62%,#ffe4e6 100%)!important;border-color:#fecdd3!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="orders"]{background:linear-gradient(145deg,#f8fafc 0%,#ffffff 62%,#e2e8f0 100%)!important;border-color:#cbd5e1!important}
-/* Distinct panel boxes inside each screen; leave inputs, buttons and menu editor behavior intact. */
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="account"] .settingsCard,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="hours"] .settingsCard{background:#fffaf5!important;border-color:#fed7aa!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="earnings"] .settingsCard{background:#f0fdf4!important;border-color:#bbf7d0!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="riders"] .settingsCard{background:#f5f3ff!important;border-color:#ddd6fe!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="gcash"] .settingsCard{background:#ecfeff!important;border-color:#a5f3fc!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="orders"] .settingsCard{background:#f8fafc!important;border-color:#cbd5e1!important}
-/* Main subpanels only: retain the store/category/food accordion structure and controls. */
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .storeCard{background:#fff!important;border-color:#fda4af!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .categoryCard{background:#fff7f8!important;border-color:#fecdd3!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodCard{background:#ffffff!important;border-color:#e5e7eb!important}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{border-bottom-color:#be123c!important}
+
+<style id="MHAC_SKYBLUE_LAST_OVERRIDE">
+html,body{background:#65d9ef!important}#app:not(.hidden){background:#65d9ef!important}
+#app:not(.hidden)>.card:not(.mhacScreenHidden),#app .gcSettings,#app .metric,#app .riderRow,#app .storeCard,#app .categoryCard,#app .foodCard,#app .orderCard,#app .chatPanel,#app .chatMessages,#app .directStoreEditor,#app .directCategoryCard{background:#65d9ef!important;color:#071827!important}
+#app input:not([type=file]),#app textarea,#app select,#app input[type=file]{background:#8be7f5!important;color:#071827!important;border-color:#22b8dc!important}
+#app button{background:#39c6e8!important;color:#071827!important}
+#app .mhacBackBtn{display:none!important}
 </style>
-
-
-
-<style id="MHAC_BLACK_LIGHTBLUE_FINAL_FIX">
-/* Final requested theme: black page, soft light-blue panels, readable black text. */
-html,body{background:#05070a!important;color:#111827!important;font-family:Arial,Helvetica,sans-serif!important}
-body{color:#111827!important}
-header, .topbar, .appHeader, #header, .siteHeader{background:#05070a!important;color:#f8fafc!important}
-#app:not(.hidden){background:#05070a!important;color:#111827!important}
-#app:not(.hidden)>.card.mhacScreenActive{
- background:#080b10!important;color:#111827!important;border:2px solid #38bdf8!important;
- border-radius:26px!important;box-shadow:0 0 0 1px rgba(56,189,248,.15),0 12px 28px rgba(0,0,0,.45)!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{border-bottom:3px solid #38bdf8!important}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h3,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading b,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading small,
-#app:not(.hidden)>.card.mhacScreenActive h1,
-#app:not(.hidden)>.card.mhacScreenActive h2,
-#app:not(.hidden)>.card.mhacScreenActive h3,
-#app:not(.hidden)>.card.mhacScreenActive h4,
-#app:not(.hidden)>.card.mhacScreenActive label,
-#app:not(.hidden)>.card.mhacScreenActive p,
-#app:not(.hidden)>.card.mhacScreenActive small,
-#app:not(.hidden)>.card.mhacScreenActive span,
-#app:not(.hidden)>.card.mhacScreenActive div,
-#app:not(.hidden)>.card.mhacScreenActive strong,
-#app:not(.hidden)>.card.mhacScreenActive b{color:#111827!important}
-/* Light-blue inner panels; use black text for contrast. */
-#app:not(.hidden)>.card.mhacScreenActive .settingsCard,
-#app:not(.hidden)>.card.mhacScreenActive .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive .storeCard,
-#app:not(.hidden)>.card.mhacScreenActive .categoryCard,
-#app:not(.hidden)>.card.mhacScreenActive .foodCard,
-#app:not(.hidden)>.card.mhacScreenActive .orderCard,
-#app:not(.hidden)>.card.mhacScreenActive .riderCard,
-#app:not(.hidden)>.card.mhacScreenActive .chatBox,
-#app:not(.hidden)>.card.mhacScreenActive .settingsBox,
-#app:not(.hidden)>.card.mhacScreenActive .metric,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{
- background:#c9efff!important;color:#111827!important;border-color:#7dd3fc!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive input,
-#app:not(.hidden)>.card.mhacScreenActive select,
-#app:not(.hidden)>.card.mhacScreenActive textarea{
- background:#fff!important;color:#111827!important;border:2px solid #38bdf8!important;
- font-size:17px!important;line-height:1.4!important;min-height:48px!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive input::placeholder,
-#app:not(.hidden)>.card.mhacScreenActive textarea::placeholder{color:#4b5563!important;opacity:1!important}
-#app:not(.hidden)>.card.mhacScreenActive button{
- color:#111827!important;font-size:16px!important;font-weight:800!important;line-height:1.35!important;
- background:#b9eaff!important;border:2px solid #38bdf8!important;border-radius:13px!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacBackBtn,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenBack,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop button{background:#7dd3fc!important;color:#111827!important;border:2px solid #38bdf8!important}
-/* Hide redundant section-collapse headings on every screen except Store/Menu Manager. */
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .sectionToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .collapseToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .accordionToggle{display:none!important}
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionBody{display:block!important}
-/* Store/menu keeps its actual collapse/expand controls and light-blue nesting. */
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .storeCard{background:#b9eaff!important;color:#111827!important;border-color:#38bdf8!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .categoryCard{background:#dff6ff!important;color:#111827!important;border-color:#7dd3fc!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodCard{background:#f0fbff!important;color:#111827!important;border-color:#bae6fd!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionToggle{display:flex!important}
-@media(max-width:600px){#app:not(.hidden)>.card.mhacScreenActive{padding:16px!important;min-height:calc(100dvh - 175px)!important;margin:10px auto!important}.mhacScreenHeading b{font-size:clamp(23px,6vw,30px)!important}}
-</style>
-
-<style id="MHAC_UNIFIED_LIGHTBLUE_FULLSCREEN_V2">
-/* Unified light-blue full-screen mobile UI. No white screen panels or outer panel borders. */
-:root{color-scheme:light}
-html,body{background:#b9eaff!important;color:#111827!important;font-family:Arial,Helvetica,sans-serif!important}
-body{margin:0!important;font-size:16px!important;line-height:1.42!important}
-header,.topbar,.appHeader,#header,.siteHeader{background:#b9eaff!important;color:#111827!important;border-color:transparent!important;box-shadow:none!important}
-#app:not(.hidden){background:#b9eaff!important;color:#111827!important;padding:0!important;margin:0!important}
-#app:not(.hidden)>.card.mhacScreenActive{
-  background:#b9eaff!important;color:#111827!important;border:0!important;border-radius:0!important;
-  box-shadow:none!important;margin:0!important;width:100%!important;max-width:none!important;
-  min-height:calc(100dvh - 165px)!important;padding:20px 16px!important;box-sizing:border-box!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{
- background:transparent!important;color:#111827!important;border:0!important;border-bottom:0!important;
- box-shadow:none!important;border-radius:0!important;padding:0 0 18px!important;margin:0 0 18px!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h3,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading b,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenHeading small,
-#app:not(.hidden)>.card.mhacScreenActive h1,
-#app:not(.hidden)>.card.mhacScreenActive h2,
-#app:not(.hidden)>.card.mhacScreenActive h3,
-#app:not(.hidden)>.card.mhacScreenActive h4,
-#app:not(.hidden)>.card.mhacScreenActive label,
-#app:not(.hidden)>.card.mhacScreenActive p,
-#app:not(.hidden)>.card.mhacScreenActive small,
-#app:not(.hidden)>.card.mhacScreenActive span,
-#app:not(.hidden)>.card.mhacScreenActive div,
-#app:not(.hidden)>.card.mhacScreenActive strong,
-#app:not(.hidden)>.card.mhacScreenActive b{color:#111827!important}
-/* Remove nested white boxes and decorative panel borders: all content sits on one light-blue screen. */
-#app:not(.hidden)>.card.mhacScreenActive .settingsCard,
-#app:not(.hidden)>.card.mhacScreenActive .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive .orderCard,
-#app:not(.hidden)>.card.mhacScreenActive .riderCard,
-#app:not(.hidden)>.card.mhacScreenActive .chatBox,
-#app:not(.hidden)>.card.mhacScreenActive .settingsBox,
-#app:not(.hidden)>.card.mhacScreenActive .metric,
-#app:not(.hidden)>.card.mhacScreenActive .gcSettings,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{
- background:#b9eaff!important;color:#111827!important;border:0!important;border-radius:0!important;box-shadow:none!important;
-}
-/* Keep menu hierarchy readable, but use blue surfaces rather than white cards. */
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .storeCard,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .categoryCard,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodCard,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditAccordion,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditToggle,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditDrawer,
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .foodEditorV2 .foodEditGroupTitle{
- background:#b9eaff!important;color:#111827!important;border-color:#7dd3fc!important;box-shadow:none!important;
-}
-/* Inputs intentionally remain white for clear typing areas. */
-#app:not(.hidden)>.card.mhacScreenActive input,
-#app:not(.hidden)>.card.mhacScreenActive select,
-#app:not(.hidden)>.card.mhacScreenActive textarea{
- background:#fff!important;color:#111827!important;border:2px solid #38bdf8!important;border-radius:12px!important;
- font-size:16px!important;line-height:1.4!important;min-height:48px!important;box-sizing:border-box!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive input::placeholder,
-#app:not(.hidden)>.card.mhacScreenActive textarea::placeholder{color:#4b5563!important;opacity:1!important}
-#app:not(.hidden)>.card.mhacScreenActive button{
- color:#111827!important;background:#8bdcff!important;border:1px solid #38bdf8!important;border-radius:13px!important;
- font-size:15px!important;font-weight:800!important;line-height:1.3!important;box-shadow:none!important;white-space:normal!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacBackBtn,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenBack,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop button{background:#38bdf8!important;color:#111827!important;border:0!important}
-/* Collapse toggles are only visible inside Store/Menu Manager. */
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .sectionToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .collapseToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .accordionToggle{display:none!important}
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionBody{display:block!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionToggle{display:flex!important}
-/* Metrics and action rows must wrap on narrow phone screens. */
-#metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-#metrics .metric{min-width:0!important}
-@media(max-width:600px){
- body{font-size:16px!important}
- #app:not(.hidden)>.card.mhacScreenActive{padding:18px 14px!important;min-height:calc(100dvh - 165px)!important}
- #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h1,
- #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h2,
- #app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop h3{font-size:clamp(23px,6vw,30px)!important;line-height:1.2!important}
- #app:not(.hidden)>.card.mhacScreenActive button{min-height:44px!important;padding:9px 10px!important}
-}
-</style>
-
-
-
-<style id="MHAC-SKYBLUE-ALL-SCREENS-NO-WHITE-V3">
-/* Requested final flat sky-blue theme: no white panels or white input fields. */
-:root{color-scheme:light!important}
-html,body,body *{--mhac-sky:#72ddf5;--mhac-sky-soft:#83e3f8;--mhac-blue:#24bce8;--mhac-border:#26bce8;}
-html,body{background:#72ddf5!important;color:#050b12!important;font-family:Arial,Helvetica,sans-serif!important}
-body{margin:0!important;color:#050b12!important}
-header,.topbar,.appHeader,#header,.siteHeader{background:#72ddf5!important;color:#050b12!important;box-shadow:none!important}
-#app:not(.hidden){background:#72ddf5!important;color:#050b12!important;padding:0!important;margin:0!important}
-#app:not(.hidden)>.card{background:#72ddf5!important;color:#050b12!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-#app:not(.hidden)>.card.mhacScreenActive{background:#72ddf5!important;color:#050b12!important;border:0!important;border-radius:0!important;box-shadow:none!important;margin:0!important;width:100%!important;max-width:none!important;min-height:calc(100dvh - 165px)!important;padding:18px 16px!important;box-sizing:border-box!important}
-#app:not(.hidden)>.card.mhacScreenActive *{color:#050b12!important;box-shadow:none!important}
-/* All inner surfaces stay in the same blue family; no white cards. */
-#app:not(.hidden)>.card.mhacScreenActive .settingsCard,
-#app:not(.hidden)>.card.mhacScreenActive .adminSectionBody,
-#app:not(.hidden)>.card.mhacScreenActive .orderCard,
-#app:not(.hidden)>.card.mhacScreenActive .riderCard,
-#app:not(.hidden)>.card.mhacScreenActive .chatBox,
-#app:not(.hidden)>.card.mhacScreenActive .settingsBox,
-#app:not(.hidden)>.card.mhacScreenActive .metric,
-#app:not(.hidden)>.card.mhacScreenActive .gcSettings,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop,
-#app:not(.hidden)>.card.mhacScreenActive .storeCard,
-#app:not(.hidden)>.card.mhacScreenActive .categoryCard,
-#app:not(.hidden)>.card.mhacScreenActive .foodCard,
-#app:not(.hidden)>.card.mhacScreenActive .foodEditAccordion,
-#app:not(.hidden)>.card.mhacScreenActive .foodEditToggle,
-#app:not(.hidden)>.card.mhacScreenActive .foodEditDrawer,
-#app:not(.hidden)>.card.mhacScreenActive .foodEditGroupTitle,
-#app:not(.hidden)>.card.mhacScreenActive [class*="card"],
-#app:not(.hidden)>.card.mhacScreenActive [class*="Card"],
-#app:not(.hidden)>.card.mhacScreenActive [class*="panel"],
-#app:not(.hidden)>.card.mhacScreenActive [class*="Panel"],
-#app:not(.hidden)>.card.mhacScreenActive [class*="box"],
-#app:not(.hidden)>.card.mhacScreenActive [class*="Box"]{
- background:#83e3f8!important;color:#050b12!important;border-color:#35c5e9!important;border-radius:14px!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop{background:transparent!important;border:0!important;border-radius:0!important;padding:0 0 14px!important}
-#app:not(.hidden)>.card.mhacScreenActive input,
-#app:not(.hidden)>.card.mhacScreenActive select,
-#app:not(.hidden)>.card.mhacScreenActive textarea,
-#app:not(.hidden)>.card.mhacScreenActive input[type="time"],
-#app:not(.hidden)>.card.mhacScreenActive input[type="file"]{
- background:#83e3f8!important;color:#050b12!important;border:2px solid #20b9e5!important;border-radius:12px!important;
- font-size:16px!important;line-height:1.4!important;min-height:48px!important;box-sizing:border-box!important;
-}
-#app:not(.hidden)>.card.mhacScreenActive input::placeholder,
-#app:not(.hidden)>.card.mhacScreenActive textarea::placeholder{color:#163b48!important;opacity:1!important}
-#app:not(.hidden)>.card.mhacScreenActive button{background:#24bce8!important;color:#050b12!important;border:1px solid #20b9e5!important;border-radius:13px!important;font-size:15px!important;font-weight:800!important;line-height:1.3!important;white-space:normal!important}
-#app:not(.hidden)>.card.mhacScreenActive .mhacBackBtn,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenBack,
-#app:not(.hidden)>.card.mhacScreenActive .mhacScreenTop button{background:#24bce8!important;color:#050b12!important;border:0!important}
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .sectionToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .collapseToggle,
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .accordionToggle{display:none!important}
-#app:not(.hidden)>.card.mhacScreenActive:not([data-mhac-screen="menu"]) .adminSectionBody{display:block!important}
-#app:not(.hidden)>.card.mhacScreenActive[data-mhac-screen="menu"] .adminSectionToggle{display:flex!important}
-/* Business hours control must be expanded by default and its collapse arrow hidden. */
-#app:not(.hidden)>.card.mhacScreenActive .adminSectionToggle[aria-controls*="business"],
-#app:not(.hidden)>.card.mhacScreenActive button[id*="businessToggle"],
-#app:not(.hidden)>.card.mhacScreenActive button[id*="BusinessToggle"]{display:none!important}
-#app:not(.hidden)>.card.mhacScreenActive [id*="businessTime"],
-#app:not(.hidden)>.card.mhacScreenActive [id*="BusinessTime"]{background:#83e3f8!important;color:#050b12!important}
-#metrics{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:8px!important}
-#metrics .metric{min-width:0!important}
-@media(max-width:600px){body{font-size:16px!important}#app:not(.hidden)>.card.mhacScreenActive{padding:16px 12px!important;min-height:calc(100dvh - 165px)!important}#app:not(.hidden)>.card.mhacScreenActive button{min-height:44px!important;padding:9px 10px!important}}
-</style>
-
