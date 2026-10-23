@@ -4574,3 +4574,41 @@ html,body{background:#65d9ef!important}#app:not(.hidden){background:#65d9ef!impo
 #app button{background:#39c6e8!important;color:#071827!important}
 #app .mhacBackBtn{display:none!important}
 </style>
+
+
+<style id="MHAC_SKYBLUE_FINAL_UI_PATCH">
+:root{--mhac-sky:#65d9ef;--mhac-sky-input:#8be7f5;--mhac-sky-button:#39c6e8;--mhac-ink:#071827}
+/* Remove white surfaces throughout all app screens, including nested cards and inline-styled elements. */
+html,body,body *{background-color:#65d9ef!important;background-image:none!important}
+#app,#app *{color:#071827!important;box-shadow:none!important}
+#app input:not([type=checkbox]):not([type=radio]),#app textarea,#app select{background-color:#8be7f5!important;border:2px solid #22b8dc!important;color:#071827!important}
+#app button,#app .btn{background-color:#39c6e8!important;border:1px solid #22a9ca!important;color:#071827!important}
+#app img,#app svg,#app canvas{background-color:transparent!important}
+/* Keep splash and page body sky blue; ensure no white app shell remains. */
+#app:not(.hidden),#app .mhacScreenActive,#app .mhacScreenActive *{background-color:#65d9ef!important}
+#app .mhacScreenActive button,#app .mhacScreenActive .btn{background-color:#39c6e8!important}
+#app .mhacScreenActive input:not([type=checkbox]):not([type=radio]),#app .mhacScreenActive textarea,#app .mhacScreenActive select{background-color:#8be7f5!important}
+/* Center section headings and make key page names more prominent. */
+#app .mhacScreenHeading,#app .mhacScreenHeading b,#app .mhacScreenActive>h1,#app .mhacScreenActive>h2,#app .mhacScreenActive>h3{ text-align:center!important; }
+#app .mhacScreenHeading b{font-size:clamp(26px,6vw,34px)!important;font-weight:900!important;line-height:1.15!important}
+#app [data-mhac-screen="riders"] h1,#app [data-mhac-screen="riders"] h2,#app [data-mhac-screen="riders"] h3,
+#app [data-mhac-screen="store"] h1,#app [data-mhac-screen="store"] h2,#app [data-mhac-screen="store"] h3,
+#app [data-mhac-screen="menu"] h1,#app [data-mhac-screen="menu"] h2,#app [data-mhac-screen="menu"] h3{ text-align:center!important;font-size:clamp(25px,6vw,33px)!important;font-weight:900!important; }
+/* Larger, centered rider names and labels. */
+#app .riderRow,#app .riderItem{ text-align:center!important; }
+#app .riderRow .name,#app .riderRow .riderName,#app .riderRow strong,#app .riderItem .name,#app .riderItem .riderName,#app .riderItem strong{display:block!important;text-align:center!important;font-size:clamp(20px,5vw,25px)!important;font-weight:900!important;line-height:1.25!important}
+#app [data-mhac-screen="riders"]{font-size:18px!important;line-height:1.4!important}
+#app [data-mhac-screen="riders"] button{font-size:16px!important;font-weight:800!important}
+/* Earnings figures and labels remain readable without white metric cards. */
+#metrics .metric{background-color:#65d9ef!important;border-color:#22b8dc!important;text-align:center!important}
+#metrics .metric span{font-size:clamp(13px,3.6vw,16px)!important;white-space:normal!important}
+#metrics .metric b{font-size:clamp(22px,5.5vw,29px)!important}
+/* Incoming order empty state and order details must not turn white. */
+#app .orderEmpty,#app .emptyState,#app .orderDetailPanel,#app .chatPanel,#app .chatMessages,#app .orderCard,#app .orderItem{background-color:#65d9ef!important;color:#071827!important}
+#app .orderActions .callCustomerBtn{background-color:#39c6e8!important;color:#071827!important}
+/* Store/category/food accordions can still collapse inside Menu Manager only. */
+#app [data-mhac-screen="riders"] .adminSectionToggle,#app [data-mhac-screen="gcash"] .adminSectionToggle{display:none!important}
+#app [data-mhac-screen="riders"] .adminSectionBody,#app [data-mhac-screen="gcash"] .adminSectionBody{display:block!important;height:auto!important;max-height:none!important;overflow:visible!important}
+#app .foodEditorV2 .foodEditDrawer.hidden{display:none!important}
+@media(max-width:600px){#app .mhacScreenActive{min-height:calc(100dvh - 150px)!important}#app [data-mhac-screen="riders"] .riderRow,#app [data-mhac-screen="riders"] .riderItem{padding:14px 8px!important}}
+</style>
